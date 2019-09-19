@@ -40,12 +40,14 @@ public class UserService {
 	}
 
 	public void updateCard(CardDetailsModel cardDetail) {
-		CardDetails card = cardDetails.findCourseByUsername("glinzac@gmail.com").orElse(null);
-		card.setCardNo(cardDetail.getCardNo());
+//		CardDetails card = cardDetails.findCourseByUsername("glinzac@gmail.com").orElse(null);
+		CardDetails card = new CardDetails();
+//		card.setCardNo(cardDetail.getCardNo());
+		System.out.println(cardDetail.getMM()+"\n"+cardDetail.getYY()+"\n"+cardDetail.getCV()+"\n"+cardDetail.getCardNo()+"\n");
 		card.setMM(cardDetail.getMM());
 		card.setYY(cardDetail.getYY());
 		card.setCV(cardDetail.getCV());
-//		card.setUserDetails(userDetails.findById("glinzac@gmail.com").get());
+		card.setUserDetails(userDetails.findById("glinzac@gmail.com").get());
 		System.out.println("card Details : "+cardDetail.getCardNo()+" <=>"+card.getCardNo());
 		cardDetails.save(card);
 	}

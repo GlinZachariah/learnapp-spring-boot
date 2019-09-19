@@ -35,12 +35,12 @@ public class UserController {
 	
 //	saveCardDetails | UpdateCardDetails
 	@RequestMapping(value="updateCardDetails",method= RequestMethod.PUT)
-	public void updateCardDetails(@RequestBody CardDetailsModel cardDetails , @RequestBody String Username) {
-		userService.updateCard(cardDetails,Username);
+	public void updateCardDetails(@RequestBody CardDetailsModel cardDetails) {
+		userService.updateCard(cardDetails);
 	}
-//	public 
+
 //	getCardDetails
- 
+	
 
 	
 	

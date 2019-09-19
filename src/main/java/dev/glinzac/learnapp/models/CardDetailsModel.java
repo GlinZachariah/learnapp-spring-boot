@@ -6,6 +6,7 @@ public class CardDetailsModel {
 	private int YY;
 	private int CV;
 	private String username;
+	
 	public CardDetailsModel() {
 		
 	}

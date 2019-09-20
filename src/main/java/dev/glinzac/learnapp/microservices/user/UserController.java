@@ -3,9 +3,11 @@ package dev.glinzac.learnapp.microservices.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.glinzac.learnapp.entities.UserDetails;
@@ -22,26 +24,26 @@ public class UserController {
 	UserService userService;
 		
 //get users count
-	@RequestMapping(value="getUserCount",method = RequestMethod.GET)
+	@RequestMapping(value="/getUserCount",method = RequestMethod.GET)
 	public int getUserCount() {
 		return userService.getUserCount();
 	}
 
 //perform authentication
-	@RequestMapping(value="performAuth",method = RequestMethod.POST)
+	@RequestMapping(value="/performAuth",method = RequestMethod.POST)
 	public UserDetailsModel performAuth(@RequestBody CredentialsModel loginData) {
 		return userService.authenticate(loginData);
 	}
 	
 //	saveCardDetails | UpdateCardDetails
-	@RequestMapping(value="updateCardDetails",method= RequestMethod.PUT)
+	@RequestMapping(value="/updateCardDetails",method= RequestMethod.PUT)
 	public void updateCardDetails(@RequestBody CardDetailsModel cardDetails) {
 		userService.updateCard(cardDetails);
 	}
 
 //	getCardDetails
-	@RequestMapping(value = "getCardDetails",method = RequestMethod.GET)
-	public CardDetailsModel getCardDetails(@RequestBody String username) {
+	@RequestMapping(value = "/getCardDetails/{username}",method = RequestMethod.GET)
+	public CardDetailsModel getCardDetails(@PathVariable String username) {
 		return userService.getCardDetails(username);
 	}
 

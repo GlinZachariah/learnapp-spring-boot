@@ -43,7 +43,7 @@ public class UserService {
 		String username =cardDetail.getUsername();
 		int count = cardDetails.checkCardDetails(username);
 		if (count == 1) {
-			int id = cardDetails.findCardId(username);
+			int id = cardDetails.findCardId(username).get();
 			CardDetails card  = cardDetails.findById(id).orElse(null);
 			card.setCardNo(cardDetail.getCardNo());
 			card.setMM(cardDetail.getmM());
@@ -62,7 +62,7 @@ public class UserService {
 	}
 
 	public CardDetailsModel getCardDetails(String username) {
-		int id = cardDetails.findCardId(username);
+		int id = cardDetails.findCardId(username).orElse(0);
 		CardDetailsModel card = new CardDetailsModel();
 		if(id != 0) {
 			CardDetails cardData = cardDetails.findById(id).get();
@@ -75,6 +75,11 @@ public class UserService {
 				return card;
 			}
 		}
+		card.setCardNo("");
+		card.setUsername("");
+		card.setcV(0);
+		card.setmM(0);
+		card.setyY(0);
 		return card;
 	}
 

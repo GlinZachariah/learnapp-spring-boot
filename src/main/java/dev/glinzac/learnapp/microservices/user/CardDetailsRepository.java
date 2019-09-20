@@ -17,5 +17,5 @@ public interface CardDetailsRepository extends CrudRepository<CardDetails, Integ
 	int checkCardDetails(@Param(value="username") String username);
 		
 	@Query(value="select user_id from card_details where user_name = :username",nativeQuery = true)
-	int findCardId(@Param(value="username") String username);
+	Optional<Integer> findCardId(@Param(value="username") String username);
 }

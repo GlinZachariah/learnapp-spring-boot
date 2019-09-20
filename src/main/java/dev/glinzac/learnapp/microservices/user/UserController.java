@@ -40,7 +40,10 @@ public class UserController {
 	}
 
 //	getCardDetails
-	
+	@RequestMapping(value = "getCardDetails",method = RequestMethod.GET)
+	public CardDetailsModel getCardDetails(@RequestBody String username) {
+		return userService.getCardDetails(username);
+	}
 
 	
 	

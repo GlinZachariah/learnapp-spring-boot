@@ -60,5 +60,24 @@ public class UserService {
 			cardDetails.save(card);
 		}
 	}
+
+	public CardDetailsModel getCardDetails(String username) {
+		int id = cardDetails.findCardId(username);
+		CardDetailsModel card = new CardDetailsModel();
+		if(id != 0) {
+			CardDetails cardData = cardDetails.findById(id).get();
+			if(cardData != null) {
+				card.setCardNo(cardData.getCardNo());
+				card.setmM(cardData.getMM());
+				card.setyY(cardData.getYY());
+				card.setcV(cardData.getCV());
+				card.setUsername(cardData.getUserDetails().getUserName());
+				return card;
+			}
+		}
+		return card;
+	}
+
+	
 	
 }

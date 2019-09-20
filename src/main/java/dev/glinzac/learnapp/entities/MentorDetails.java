@@ -24,8 +24,8 @@ public class MentorDetails {
 
     @ManyToMany
 	private List<Technology> skills;
-	private int timezoneId;
-	private String timeSlot;
+	private String timezoneId;
+	private int timeSlot;
 	private String linkedInURL;
 	private int experience;
 
@@ -52,19 +52,19 @@ public class MentorDetails {
 		this.userDetails = userDetails;
 	}
 
-	public int getTimezoneId() {
+	public String getTimezoneId() {
 		return timezoneId;
 	}
 
-	public void setTimezoneId(int timezoneId) {
+	public void setTimezoneId(String timezoneId) {
 		this.timezoneId = timezoneId;
 	}
 
-	public String getTimeSlot() {
+	public int getTimeSlot() {
 		return timeSlot;
 	}
 
-	public void setTimeSlot(String timeSlot) {
+	public void setTimeSlot(int timeSlot) {
 		this.timeSlot = timeSlot;
 	}
 

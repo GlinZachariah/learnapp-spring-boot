@@ -1,6 +1,8 @@
 package dev.glinzac.learnapp.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -10,10 +12,13 @@ import javax.persistence.Table;
 @Table(name="card_details")
 public class CardDetails {
 	@Id
-	private int cardNo;
+	@GeneratedValue
+	private int userId;
+	private String cardNo;
 	private int MM;
 	private int YY;
 	private int CV;
+	
 	
 	@OneToOne
 	@JoinColumn(name = "user_name")
@@ -23,7 +28,7 @@ public class CardDetails {
 		
 	}
 	
-	public CardDetails(int cardNo, int mM, int yY, int cV) {
+	public CardDetails(String cardNo, int mM, int yY, int cV) {
 		super();
 		this.cardNo = cardNo;
 		MM = mM;
@@ -36,10 +41,14 @@ public class CardDetails {
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
 	}
-	public int getCardNo() {
+	public int getUserId() {
+		return userId;
+	}
+
+	public String getCardNo() {
 		return cardNo;
 	}
-	public void setCardNo(int cardNo) {
+	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
 	public int getMM() {

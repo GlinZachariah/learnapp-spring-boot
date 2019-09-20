@@ -40,16 +40,25 @@ public class UserService {
 	}
 
 	public void updateCard(CardDetailsModel cardDetail) {
-//		CardDetails card = cardDetails.findCourseByUsername("glinzac@gmail.com").orElse(null);
-		CardDetails card = new CardDetails();
-//		card.setCardNo(cardDetail.getCardNo());
-		System.out.println(cardDetail.getMM()+"\n"+cardDetail.getYY()+"\n"+cardDetail.getCV()+"\n"+cardDetail.getCardNo()+"\n");
-		card.setMM(cardDetail.getMM());
-		card.setYY(cardDetail.getYY());
-		card.setCV(cardDetail.getCV());
-		card.setUserDetails(userDetails.findById("glinzac@gmail.com").get());
-		System.out.println("card Details : "+cardDetail.getCardNo()+" <=>"+card.getCardNo());
-		cardDetails.save(card);
+		String username =cardDetail.getUsername();
+		int count = cardDetails.checkCardDetails(username);
+		if (count == 1) {
+			int id = cardDetails.findCardId(username);
+			CardDetails card  = cardDetails.findById(id).orElse(null);
+			card.setCardNo(cardDetail.getCardNo());
+			card.setMM(cardDetail.getmM());
+			card.setYY(cardDetail.getyY());
+			card.setCV(cardDetail.getcV());
+			cardDetails.save(card);
+		}else {
+			CardDetails card = new CardDetails();
+			card.setCardNo(cardDetail.getCardNo());
+			card.setMM(cardDetail.getmM());
+			card.setYY(cardDetail.getyY());
+			card.setCV(cardDetail.getcV());
+			card.setUserDetails(userDetails.findById(username).get());
+			cardDetails.save(card);
+		}
 	}
 	
 }

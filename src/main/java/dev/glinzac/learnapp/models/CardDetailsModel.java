@@ -1,55 +1,67 @@
 package dev.glinzac.learnapp.models;
 
 public class CardDetailsModel {
-	private int cardNo;
-	private int MM;
-	private int YY;
-	private int CV;
+	private String cardNo;
+	private int mM;
+	private int yY;
+	private int cV;
 	private String username;
 	
 	public CardDetailsModel() {
 		
 	}
 	
-	public CardDetailsModel(int cardNo, int mM, int yY, int cV, String username) {
+
+	public CardDetailsModel(String cardNo, int mM, int yY, int cV, String username) {
 		super();
 		this.cardNo = cardNo;
-		MM = mM;
-		YY = yY;
-		CV = cV;
+		this.mM = mM;
+		this.yY = yY;
+		this.cV = cV;
 		this.username = username;
 	}
-	
-	public int getCardNo() {
+
+
+	public String getCardNo() {
 		return cardNo;
 	}
-	public void setCardNo(int cardNo) {
+
+	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
-	public int getMM() {
-		return MM;
+
+	public int getmM() {
+		return mM;
 	}
-	public void setMM(int mM) {
-		MM = mM;
+
+	public void setmM(int mM) {
+		this.mM = mM;
 	}
-	public int getYY() {
-		return YY;
+
+	public int getyY() {
+		return yY;
 	}
-	public void setYY(int yY) {
-		YY = yY;
+
+	public void setyY(int yY) {
+		this.yY = yY;
 	}
-	public int getCV() {
-		return CV;
+
+	public int getcV() {
+		return cV;
 	}
-	public void setCV(int cV) {
-		CV = cV;
+
+	public void setcV(int cV) {
+		this.cV = cV;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	
 	
 }

@@ -1,18 +1,18 @@
 package dev.glinzac.learnapp.microservices.user;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.glinzac.learnapp.entities.UserDetails;
+import dev.glinzac.learnapp.TechnologyService;
+import dev.glinzac.learnapp.entities.Technology;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
+import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
 
 @RestController
@@ -22,6 +22,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	TechnologyService technologyService;
 		
 //get users count
 	@RequestMapping(value="/getUserCount",method = RequestMethod.GET)
@@ -46,8 +49,16 @@ public class UserController {
 	public CardDetailsModel getCardDetails(@PathVariable String username) {
 		return userService.getCardDetails(username);
 	}
-
 	
+//	getCompletedTrainingDetails
+//	@RequestMapping(value = "/getCompletedTrainingDetails/{username}",method = RequestMethod.GET)
+//	public List<UserCompletedTrainingModel> getCompletedTraining(@PathVariable String username){
+//		return userService.getTrainingCompleted(username);
+//	}
 	
+	@RequestMapping(value="/getTechnologies",method = RequestMethod.GET)
+	public List<Technology> getTechnologies(){
+		return technologyService.getTechnologyList();
+	}
 	
 }

@@ -1,11 +1,14 @@
 package dev.glinzac.learnapp.microservices.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dev.glinzac.learnapp.entities.CardDetails;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
+import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
 
 @Service
@@ -81,6 +84,11 @@ public class UserService {
 		card.setmM(0);
 		card.setyY(0);
 		return card;
+	}
+
+	public List<UserCompletedTrainingModel> getTrainingCompleted(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

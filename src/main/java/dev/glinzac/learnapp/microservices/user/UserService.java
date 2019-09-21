@@ -143,6 +143,24 @@ public class UserService {
 		return currentData; 
 	}
 
+	public void updateProgressTraining(UserProgressTrainingModel data) {
+		int count = userTrainingDetails.findProgressCourse(data.getUserName(),data.getCourseId()).orElse(0);
+		UserProgress newData = new UserProgress(); 
+		if( count != 0) {
+			
+		}else {
+			newData.setCourseDetails(courseDetails.findById(data.getCourseId()).get());
+			newData.setCourseStatus("Under Review");
+			newData.setPaymentStatus("NA");
+			newData.setProgress(0.0D);
+			newData.setRating(0);
+			newData.setStartDate(data.getStartDate());
+			newData.setTimeslot(data.getTimeSlot());
+			newData.setUserDetails(userDetails.findById(data.getUserName()).get());
+			userTrainingDetails.save(newData);
+		}
+	}
+
 	
 	
 }

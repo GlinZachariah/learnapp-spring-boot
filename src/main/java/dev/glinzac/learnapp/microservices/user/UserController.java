@@ -76,6 +76,11 @@ public class UserController {
 	}
 	
 //	addProgressTrainingDetails | updateProgressTrainingDetails
+	@RequestMapping(value="/updateProgressTraining/",method = RequestMethod.PUT)
+	public void updateProgressTrainingDetails(@RequestBody UserProgressTrainingModel data) {
+		userService.updateProgressTraining(data);
+	}
+	
 //	signInUser
 	
 }

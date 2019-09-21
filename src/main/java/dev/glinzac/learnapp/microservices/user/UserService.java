@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dev.glinzac.learnapp.entities.CardDetails;
 import dev.glinzac.learnapp.entities.UserCompleted;
 import dev.glinzac.learnapp.entities.UserDetails;
+import dev.glinzac.learnapp.microservices.mentor.CourseDetailsRepository;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
@@ -19,6 +20,8 @@ public class UserService {
 	UserDetailsRepository userDetails;
 	@Autowired
 	CardDetailsRepository cardDetails;
+	@Autowired
+	CourseDetailsRepository courseDetails;
 	@Autowired
 	UserCompletedRepository userCompletedDetails;
 	
@@ -105,6 +108,17 @@ public class UserService {
 		});
 		
 		return userCompletedData;
+	}
+
+	public void addToCompleted(UserCompletedTrainingModel userData) {
+		UserCompleted user = new UserCompleted();
+		user.setUserDetails(userDetails.findById(userData.getUserName()).get());
+		user.setCourseDetails(courseDetails.findById(userData.getCourseId()).get());
+		user.setEndDate(userData.getEndDate());
+		user.setRating(userData.getRating());
+		user.setStartDate(userData.getStartDate());
+		user.setTimeslot(userData.getTimeSlot());
+		userCompletedDetails.save(user);
 	}
 
 	

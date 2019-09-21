@@ -56,9 +56,18 @@ public class UserController {
 		return userService.getTrainingCompleted(username);
 	}
 	
+//	addToCompleted
+	@RequestMapping(value = "/addCompletedTrainingDetails",method = RequestMethod.POST)
+	public void addToCompleted(@RequestBody UserCompletedTrainingModel userData) {
+		userService.addToCompleted(userData);
+	}
+	
+//	getListofTechnologies
 	@RequestMapping(value="/getTechnologies",method = RequestMethod.GET)
 	public List<Technology> getTechnologies(){
 		return technologyService.getTechnologyList();
 	}
+	
+	
 	
 }

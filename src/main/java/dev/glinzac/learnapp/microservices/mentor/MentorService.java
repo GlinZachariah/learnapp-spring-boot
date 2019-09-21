@@ -51,7 +51,7 @@ public class MentorService {
 		user.setFullName(signUp.getFullName());
 		user.setUserPassword(signUp.getUserPassword());
 		user.setUserRole(signUp.getUserRole());	
-		userRepo.save(user);
+//		userRepo.save(user);
 		
 		
 		MentorDetails mentor = new MentorDetails();

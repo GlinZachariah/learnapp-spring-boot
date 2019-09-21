@@ -132,6 +132,7 @@ public class UserService {
 		data.forEach(user->{
 			UserProgressTrainingModel newUser = new UserProgressTrainingModel();
 			newUser.setCourseId(user.getCourseDetails().getCourseId());
+			newUser.setCourseStatus(user.getCourseStatus());
 			newUser.setPaymentStatus(user.getPaymentStatus());
 			newUser.setProgress(user.getProgress());
 			newUser.setRating(user.getRating());
@@ -145,20 +146,25 @@ public class UserService {
 
 	public void updateProgressTraining(UserProgressTrainingModel data) {
 		int count = userTrainingDetails.findProgressCourse(data.getUserName(),data.getCourseId()).orElse(0);
-		UserProgress newData = new UserProgress(); 
+		UserProgress newData;
 		if( count != 0) {
-			
+			newData = userTrainingDetails.findCourse(data.getUserName(), data.getCourseId()).get();
 		}else {
+			newData = new UserProgress(); 
+		}
 			newData.setCourseDetails(courseDetails.findById(data.getCourseId()).get());
-			newData.setCourseStatus("Under Review");
-			newData.setPaymentStatus("NA");
-			newData.setProgress(0.0D);
-			newData.setRating(0);
+			newData.setCourseStatus(data.getCourseStatus());
+			newData.setPaymentStatus(data.getPaymentStatus());
+			newData.setProgress(data.getProgress());
+			newData.setRating(data.getRating());
 			newData.setStartDate(data.getStartDate());
 			newData.setTimeslot(data.getTimeSlot());
 			newData.setUserDetails(userDetails.findById(data.getUserName()).get());
 			userTrainingDetails.save(newData);
-		}
+	}
+
+	public void addUser(UserDetails user) {
+		userDetails.save(user);
 	}
 
 	

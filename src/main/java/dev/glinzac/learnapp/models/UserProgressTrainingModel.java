@@ -8,22 +8,26 @@ public class UserProgressTrainingModel {
 	private Double progress;
 	private int rating;
 	private String paymentStatus;
+	private String courseStatus;
 	private String timeSlot;
 	private Date startDate;
 	public UserProgressTrainingModel() {
 		
 	}
-	public UserProgressTrainingModel(String courseId, String userName, Double progress, int rating, String paymentStatus,
-			String timeSlot, Date startDate) {
+	
+	public UserProgressTrainingModel(String courseId, String userName, Double progress, int rating,
+			String paymentStatus, String courseStatus, String timeSlot, Date startDate) {
 		super();
 		this.courseId = courseId;
 		this.userName = userName;
 		this.progress = progress;
 		this.rating = rating;
 		this.paymentStatus = paymentStatus;
+		this.courseStatus = courseStatus;
 		this.timeSlot = timeSlot;
 		this.startDate = startDate;
 	}
+
 	public String getCourseId() {
 		return courseId;
 	}
@@ -65,6 +69,14 @@ public class UserProgressTrainingModel {
 	}
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public String getCourseStatus() {
+		return courseStatus;
+	}
+
+	public void setCourseStatus(String courseStatus) {
+		this.courseStatus = courseStatus;
 	}
 	
 }

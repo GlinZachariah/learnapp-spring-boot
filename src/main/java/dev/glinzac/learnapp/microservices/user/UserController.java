@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.glinzac.learnapp.TechnologyService;
 import dev.glinzac.learnapp.entities.Technology;
+import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
@@ -27,60 +28,63 @@ public class UserController {
 	@Autowired
 	TechnologyService technologyService;
 		
-//get users count
+//* get users count
 	@RequestMapping(value="/getUserCount",method = RequestMethod.GET)
 	public int getUserCount() {
 		return userService.getUserCount();
 	}
 
-//perform authentication
+//* perform authentication
 	@RequestMapping(value="/performAuth",method = RequestMethod.POST)
 	public UserDetailsModel performAuth(@RequestBody CredentialsModel loginData) {
 		return userService.authenticate(loginData);
 	}
 	
-//	saveCardDetails | UpdateCardDetails
+//*	saveCardDetails | UpdateCardDetails
 	@RequestMapping(value="/updateCardDetails",method= RequestMethod.PUT)
 	public void updateCardDetails(@RequestBody CardDetailsModel cardDetails) {
 		userService.updateCard(cardDetails);
 	}
 
-//	getCardDetails
+//*	getCardDetails
 	@RequestMapping(value = "/getCardDetails/{username}",method = RequestMethod.GET)
 	public CardDetailsModel getCardDetails(@PathVariable String username) {
 		return userService.getCardDetails(username);
 	}
 	
-//	getCompletedTrainingDetails
+//*	getCompletedTrainingDetails
 	@RequestMapping(value = "/getCompletedTrainingDetails/{username}",method = RequestMethod.GET)
 	public List<UserCompletedTrainingModel> getCompletedTraining(@PathVariable String username){
 		return userService.getTrainingCompleted(username);
 	}
 	
-//	addToCompleted
+//*	addToCompleted
 	@RequestMapping(value = "/addCompletedTrainingDetails",method = RequestMethod.POST)
 	public void addToCompleted(@RequestBody UserCompletedTrainingModel userData) {
 		userService.addToCompleted(userData);
 	}
 	
-//	getListofTechnologies
+//*	getListofTechnologies
 	@RequestMapping(value="/getTechnologies",method = RequestMethod.GET)
 	public List<Technology> getTechnologies(){
 		return technologyService.getTechnologyList();
 	}
 	
-//	getProgressTrainingDetails
+//*	getProgressTrainingDetails
 	@RequestMapping(value="/getProgressTraining/{username}",method = RequestMethod.GET)
 	public List<UserProgressTrainingModel> getProgressTraining(@PathVariable String username) {
 		return userService.getCurrentTraining(username);
 	}
 	
-//	addProgressTrainingDetails | updateProgressTrainingDetails
-	@RequestMapping(value="/updateProgressTraining/",method = RequestMethod.PUT)
+//*	addProgressTrainingDetails | updateProgressTrainingDetails
+	@RequestMapping(value="/updateProgressTraining",method = RequestMethod.PUT)
 	public void updateProgressTrainingDetails(@RequestBody UserProgressTrainingModel data) {
 		userService.updateProgressTraining(data);
 	}
 	
-//	signInUser
-	
+//*	signUpUser
+	@RequestMapping(value="/signUpUser",method = RequestMethod.POST)
+	public void signUpUser(@RequestBody UserDetails user) {
+		userService.addUser(user);
+	}
 }

@@ -5,14 +5,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import dev.glinzac.learnapp.entities.CardDetails;
 import dev.glinzac.learnapp.entities.UserCompleted;
 import dev.glinzac.learnapp.entities.UserDetails;
+import dev.glinzac.learnapp.entities.UserProgress;
 import dev.glinzac.learnapp.microservices.mentor.CourseDetailsRepository;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
+import dev.glinzac.learnapp.models.UserProgressTrainingModel;
 
 @Service
 public class UserService {
@@ -24,6 +27,8 @@ public class UserService {
 	CourseDetailsRepository courseDetails;
 	@Autowired
 	UserCompletedRepository userCompletedDetails;
+	@Autowired
+	UserTrainingRepository userTrainingDetails;
 	
 	public UserDetailsModel authenticate(CredentialsModel loginData){
 		UserDetailsModel userDetailsModel = new UserDetailsModel();
@@ -119,6 +124,23 @@ public class UserService {
 		user.setStartDate(userData.getStartDate());
 		user.setTimeslot(userData.getTimeSlot());
 		userCompletedDetails.save(user);
+	}
+
+	public List<UserProgressTrainingModel> getCurrentTraining(String username) {
+		List<UserProgress> data = userTrainingDetails.findTrainingInProgress(username);
+		List<UserProgressTrainingModel> currentData = new ArrayList<UserProgressTrainingModel>();
+		data.forEach(user->{
+			UserProgressTrainingModel newUser = new UserProgressTrainingModel();
+			newUser.setCourseId(user.getCourseDetails().getCourseId());
+			newUser.setPaymentStatus(user.getPaymentStatus());
+			newUser.setProgress(user.getProgress());
+			newUser.setRating(user.getRating());
+			newUser.setStartDate(user.getStartDate());
+			newUser.setTimeSlot(user.getTimeslot());
+			newUser.setUserName(user.getUserDetails().getUserName());
+			currentData.add(newUser);
+		});
+		return currentData; 
 	}
 
 	

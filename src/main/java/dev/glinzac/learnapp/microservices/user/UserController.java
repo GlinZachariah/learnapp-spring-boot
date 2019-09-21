@@ -14,6 +14,7 @@ import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
+import dev.glinzac.learnapp.models.UserProgressTrainingModel;
 
 @RestController
 @RequestMapping("/users/")
@@ -68,6 +69,13 @@ public class UserController {
 		return technologyService.getTechnologyList();
 	}
 	
+//	getProgressTrainingDetails
+	@RequestMapping(value="/getProgressTraining/{username}",method = RequestMethod.GET)
+	public List<UserProgressTrainingModel> getProgressTraining(@PathVariable String username) {
+		return userService.getCurrentTraining(username);
+	}
 	
+//	addProgressTrainingDetails | updateProgressTrainingDetails
+//	signInUser
 	
 }

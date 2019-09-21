@@ -43,7 +43,7 @@ public class MentorService {
 		courseRepo.save(newCourse);
 		
 	}
-//	mentor signup
+//	mentor sign up
 	public void signUp(SignUpModel signUp) {
 		UserDetails user = new UserDetails();
 		user.setUserName(signUp.getUserName());

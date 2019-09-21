@@ -17,13 +17,13 @@ public class MentorController {
 	MentorService mentorService;
 	
 //	signUp Mentor
-	@RequestMapping(name = "/signUp" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/signUp" ,method = RequestMethod.POST)
 	public void signUpMentor(@RequestBody SignUpModel signUp) {
 		mentorService.signUp(signUp);
 	}
 	
 //	addCourse
-	@RequestMapping(name = "/addCourse",method = RequestMethod.POST)
+	@RequestMapping(value = "/addCourse",method = RequestMethod.POST)
 	public void addCourse(@RequestBody CourseModel course) {
 		mentorService.addCourse(course);
 	}

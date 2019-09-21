@@ -1,10 +1,12 @@
 package dev.glinzac.learnapp.microservices.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dev.glinzac.learnapp.entities.CardDetails;
+import dev.glinzac.learnapp.entities.UserCompleted;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
@@ -17,6 +19,8 @@ public class UserService {
 	UserDetailsRepository userDetails;
 	@Autowired
 	CardDetailsRepository cardDetails;
+	@Autowired
+	UserCompletedRepository userCompletedDetails;
 	
 	public UserDetailsModel authenticate(CredentialsModel loginData){
 		UserDetailsModel userDetailsModel = new UserDetailsModel();
@@ -87,7 +91,20 @@ public class UserService {
 	}
 
 	public List<UserCompletedTrainingModel> getTrainingCompleted(String username) {	
-		return null;
+		Iterable<UserCompleted> userIterable= userCompletedDetails.findAll(); 
+		List<UserCompletedTrainingModel> userCompletedData = new ArrayList<UserCompletedTrainingModel>();
+		userIterable.forEach(user->{
+			UserCompletedTrainingModel newData = new UserCompletedTrainingModel();
+			newData.setCourseId(user.getCourseDetails().getCourseId());
+			newData.setUserName(user.getUserDetails().getUserName());
+			newData.setTimeSlot(user.getTimeslot());
+			newData.setStartDate(user.getStartDate());
+			newData.setEndDate(user.getEndDate());
+			newData.setRating(user.getRating());
+			userCompletedData.add(newData);
+		});
+		
+		return userCompletedData;
 	}
 
 	

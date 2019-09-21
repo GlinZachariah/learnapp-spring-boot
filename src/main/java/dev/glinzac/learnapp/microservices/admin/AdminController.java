@@ -43,7 +43,7 @@ public class AdminController {
 		technologyService.addTechnology(technology);;
 	}
 	
-	@RequestMapping(value="/addTechology/{technology}",method = RequestMethod.GET)
+	@RequestMapping(value="/deleteTechology/{technology}",method = RequestMethod.GET)
 	public void deleteTech(@PathVariable(name = "technology") String technology){
 		technologyService.deleteTechnology(technology);;
 	}

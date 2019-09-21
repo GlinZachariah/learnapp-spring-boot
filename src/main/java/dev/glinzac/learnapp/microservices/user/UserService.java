@@ -86,8 +86,7 @@ public class UserService {
 		return card;
 	}
 
-	public List<UserCompletedTrainingModel> getTrainingCompleted(String username) {
-		// TODO Auto-generated method stub
+	public List<UserCompletedTrainingModel> getTrainingCompleted(String username) {	
 		return null;
 	}
 

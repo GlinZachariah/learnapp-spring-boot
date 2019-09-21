@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user_completed")
+//@NamedQuery(name = "findCoursesByUser",query = "select * from user_completed where user_name = :username")
 public class UserCompleted {
 	
 	@Id

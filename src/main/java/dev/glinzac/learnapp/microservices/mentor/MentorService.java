@@ -21,6 +21,7 @@ public class MentorService {
 	@Autowired
 	MentorDetailsRepository mentorRepo;
 	
+//	add new course
 	public void addCourse(CourseModel course) {
 		CourseDetails newCourse = new CourseDetails();
 		newCourse.setAverageRating(0);
@@ -42,7 +43,7 @@ public class MentorService {
 		courseRepo.save(newCourse);
 		
 	}
-
+//	mentor signup
 	public void signUp(SignUpModel signUp) {
 		UserDetails user = new UserDetails();
 		user.setUserName(signUp.getUserName());

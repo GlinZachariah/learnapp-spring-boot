@@ -51,10 +51,10 @@ public class UserController {
 	}
 	
 //	getCompletedTrainingDetails
-//	@RequestMapping(value = "/getCompletedTrainingDetails/{username}",method = RequestMethod.GET)
-//	public List<UserCompletedTrainingModel> getCompletedTraining(@PathVariable String username){
-//		return userService.getTrainingCompleted(username);
-//	}
+	@RequestMapping(value = "/getCompletedTrainingDetails/{username}",method = RequestMethod.GET)
+	public List<UserCompletedTrainingModel> getCompletedTraining(@PathVariable String username){
+		return userService.getTrainingCompleted(username);
+	}
 	
 	@RequestMapping(value="/getTechnologies",method = RequestMethod.GET)
 	public List<Technology> getTechnologies(){

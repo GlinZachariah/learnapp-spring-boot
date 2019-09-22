@@ -36,6 +36,10 @@ public class MentorDetails {
 	private boolean CourseTypeDemo;
 	
 	
+	public int getMentorId() {
+		return mentorId;
+	}
+
 	public List<Technology> getSkills() {
 		return skills;
 	}

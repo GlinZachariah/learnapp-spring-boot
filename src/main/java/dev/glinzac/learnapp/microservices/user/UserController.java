@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.glinzac.learnapp.SearchCourseService;
 import dev.glinzac.learnapp.TechnologyService;
 import dev.glinzac.learnapp.entities.Technology;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
+import dev.glinzac.learnapp.models.SearchCourseRequestModel;
+import dev.glinzac.learnapp.models.SearchCourseResponseModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
 import dev.glinzac.learnapp.models.UserProgressTrainingModel;
@@ -27,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	TechnologyService technologyService;
+	
+	@Autowired
+	SearchCourseService searchCourseService;
 		
 //* get users count
 	@RequestMapping(value="/getUserCount",method = RequestMethod.GET)
@@ -87,4 +93,11 @@ public class UserController {
 	public void signUpUser(@RequestBody UserDetails user) {
 		userService.addUser(user);
 	}
+	
+//	searchCourses
+	@RequestMapping(value = "/searchCourse",method = RequestMethod.POST)
+	public List<SearchCourseResponseModel> searchCourse(@RequestBody SearchCourseRequestModel requestData) {
+		return searchCourseService.findAllCourses(requestData);
+	}
+	
 }

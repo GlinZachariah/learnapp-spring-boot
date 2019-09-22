@@ -12,4 +12,7 @@ public interface CourseDetailsRepository extends CrudRepository<CourseDetails, S
 
 	@Query(value="select * from course_details where technology = :tech",nativeQuery = true)
 	List<CourseDetails> findTrainingInProgress(@Param(value="tech") String tech);
+
+	@Query(value="select * from course_details where mentor_id = :mentorId",nativeQuery = true)
+	List<CourseDetails> findByMentorId(@Param(value="mentorId") int mentorId);
 }

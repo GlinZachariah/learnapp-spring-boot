@@ -3,11 +3,10 @@ package dev.glinzac.learnapp.models;
 import java.sql.Date;
 
 public class CalendarModel {
+	private int calendarId;
 	private Date fromDate;
 	private Date tillDate;
-	private String timeSlot;
-	private int Frequency;
-	private String excepDays;
+	private int timeSlot;
 	private String status;
 	private int mentorId;
 	
@@ -15,16 +14,23 @@ public class CalendarModel {
 		
 	}
 	
-	public CalendarModel(Date fromDate, Date tillDate, String timeSlot, int frequency, String excepDays, String status,
+	public CalendarModel(int calendarId,Date fromDate, Date tillDate, int timeSlot, String status,
 			int mentorId) {
 		super();
+		this.calendarId = calendarId;
 		this.fromDate = fromDate;
 		this.tillDate = tillDate;
 		this.timeSlot = timeSlot;
-		Frequency = frequency;
-		this.excepDays = excepDays;
 		this.status = status;
 		this.mentorId = mentorId;
+	}
+	
+	public int getCalendarId() {
+		return calendarId;
+	}
+
+	public void setCalendarId(int calendarId) {
+		this.calendarId = calendarId;
 	}
 
 	public Date getFromDate() {
@@ -33,23 +39,11 @@ public class CalendarModel {
 	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
-	public String getTimeSlot() {
+	public int getTimeSlot() {
 		return timeSlot;
 	}
-	public void setTimeSlot(String timeSlot) {
+	public void setTimeSlot(int timeSlot) {
 		this.timeSlot = timeSlot;
-	}
-	public int getFrequency() {
-		return Frequency;
-	}
-	public void setFrequency(int frequency) {
-		Frequency = frequency;
-	}
-	public String getExcepDays() {
-		return excepDays;
-	}
-	public void setExcepDays(String excepDays) {
-		this.excepDays = excepDays;
 	}
 	public String getStatus() {
 		return status;

@@ -15,6 +15,7 @@ import dev.glinzac.learnapp.entities.Technology;
 import dev.glinzac.learnapp.models.CalendarModel;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CourseModel;
+import dev.glinzac.learnapp.models.MentorSkillModel;
 import dev.glinzac.learnapp.models.SignUpModel;
 
 @RestController
@@ -24,7 +25,7 @@ public class MentorController {
 	@Autowired
 	MentorService mentorService;
 	
-//	signUp Mentor
+//*	signUp Mentor
 	@RequestMapping(value = "/signUp" ,method = RequestMethod.POST)
 	public void signUpMentor(@RequestBody SignUpModel signUp) {
 		mentorService.signUp(signUp);
@@ -94,13 +95,17 @@ public class MentorController {
 	public SignUpModel getMentorDetails(@PathVariable String mentorId) {
 		return mentorService.getMentorDetails(Integer.parseInt(mentorId));
 	}
-//	getMentorSkills
+//*	getMentorSkills
 	@RequestMapping(value = "/getMentorSkills/{mentorId}",method = RequestMethod.GET)
 	public List<Technology> getSkills(@PathVariable  String mentorId){
 		return mentorService.getSkills(Integer.parseInt(mentorId));
 	}
 	
-//	updateMentorSkills
+//*	updateMentorSkills
+	@RequestMapping(value = "/updateMentorSkills",method = RequestMethod.PUT)
+	public void updateSkills(@RequestBody  MentorSkillModel mentorSkill){
+		mentorService.updateSkills(mentorSkill);
+	}
 //	viewHistory
 //	InProgress
 //	updateInProgress

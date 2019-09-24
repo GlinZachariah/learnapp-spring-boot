@@ -20,6 +20,7 @@ import dev.glinzac.learnapp.microservices.user.UserDetailsRepository;
 import dev.glinzac.learnapp.models.CalendarModel;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CourseModel;
+import dev.glinzac.learnapp.models.MentorSkillModel;
 import dev.glinzac.learnapp.models.SignUpModel;
 
 @Service
@@ -222,6 +223,13 @@ public class MentorService {
 	}
 	public List<Technology> getSkills(int mentorId) {
 		return mentorRepo.findMentorSkills(mentorId);
+	}
+	public void updateSkills(MentorSkillModel mentorSkill) {
+		int mentorId = mentorSkill.getMentorId();
+		List<Technology> skills= mentorSkill.getSkills();
+		MentorDetails mentor = mentorRepo.findById(mentorId).get();
+		mentor.setSkills(skills);
+		mentorRepo.save(mentor);
 	}
 	
 	

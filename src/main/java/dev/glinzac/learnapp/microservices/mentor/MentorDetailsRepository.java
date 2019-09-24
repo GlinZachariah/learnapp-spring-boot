@@ -16,7 +16,7 @@ public interface MentorDetailsRepository extends CrudRepository<MentorDetails, I
 	
 	@Query(value="select mentor_id from mentor_details where user_name = :username",nativeQuery = true)
 	Optional<Integer> findMentorId(@Param(value="username") String username);
-	
+
 	@Query(value="select skills_skill_name from mentor_details_skills where mentor_details_mentor_id = :mentorId",nativeQuery = true)
 	List<Technology> findMentorSkills(@Param(value="mentorId") int mentorId);
 }

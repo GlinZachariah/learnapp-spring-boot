@@ -20,6 +20,8 @@ import dev.glinzac.learnapp.microservices.user.UserDetailsRepository;
 import dev.glinzac.learnapp.models.CalendarModel;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CourseModel;
+import dev.glinzac.learnapp.models.MentorHistoryModel;
+import dev.glinzac.learnapp.models.MentorProgressModel;
 import dev.glinzac.learnapp.models.MentorSkillModel;
 import dev.glinzac.learnapp.models.SignUpModel;
 
@@ -230,6 +232,24 @@ public class MentorService {
 		MentorDetails mentor = mentorRepo.findById(mentorId).get();
 		mentor.setSkills(skills);
 		mentorRepo.save(mentor);
+	}
+	public List<MentorHistoryModel> viewHistory(int mentorId) {
+		List<MentorHistoryModel> result= new ArrayList<MentorHistoryModel>();
+		List<CourseDetails> courses = courseRepo.findByMentorId(mentorId);
+		courses.forEach(course->{
+			MentorHistoryModel resultItem = new MentorHistoryModel();
+			resultItem.setCourseActive(course.getTraineeInProgress());
+			resultItem.setCourseCompleted(course.getTraineeCompleted());
+			resultItem.setCourseId(course.getCourseId());
+			resultItem.setCourseRating(course.getAverageRating());
+			resultItem.setTotalTraineeCount(course.getTotalTraineeCount());
+			result.add(resultItem);
+		});
+		return result;
+	}
+	public List<MentorProgressModel> viewProgress(int parseInt) {
+		
+		return null;
 	}
 	
 	

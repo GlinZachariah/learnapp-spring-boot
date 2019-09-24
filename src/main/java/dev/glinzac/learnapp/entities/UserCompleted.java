@@ -29,6 +29,8 @@ public class UserCompleted {
 	private String timeslot;
 	private Date startDate;
 	private Date endDate;
+	private int withdrawCount;
+	
 	public CourseDetails getCourseDetails() {
 		return courseDetails;
 	}
@@ -64,6 +66,12 @@ public class UserCompleted {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public int getWithdrawCount() {
+		return withdrawCount;
+	}
+	public void setWithdrawCount(int withdrawCount) {
+		this.withdrawCount = withdrawCount;
 	}
 	
 	

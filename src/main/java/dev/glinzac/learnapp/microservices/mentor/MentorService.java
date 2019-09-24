@@ -13,6 +13,7 @@ import dev.glinzac.learnapp.entities.CalendarEntity;
 import dev.glinzac.learnapp.entities.CardDetails;
 import dev.glinzac.learnapp.entities.CourseDetails;
 import dev.glinzac.learnapp.entities.MentorDetails;
+import dev.glinzac.learnapp.entities.Technology;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.microservices.user.CardDetailsRepository;
 import dev.glinzac.learnapp.microservices.user.UserDetailsRepository;
@@ -177,6 +178,50 @@ public class MentorService {
 		card.setmM(0);
 		card.setyY(0);
 		return card;
+	}
+	
+	public void updateMentorDetails(SignUpModel mentorDetails) {
+		int mentorId = mentorRepo.findMentorId(mentorDetails.getUserName()).get();
+		MentorDetails mentor = mentorRepo.findById(mentorId).get();
+		UserDetails user = userRepo.findById(mentorDetails.getUserName()).get();
+		user.setUserName(mentorDetails.getUserName());
+		user.setAccountStatus(mentorDetails.getAccountStatus());
+		user.setFullName(mentorDetails.getFullName());
+		user.setUserPassword(mentorDetails.getUserPassword());
+		user.setUserRole(mentorDetails.getUserRole());	
+		userRepo.save(user);
+
+		mentor.setUserDetails(user);
+		mentor.setCourseTypeBlog(mentorDetails.isCourseTypeBlog());
+		mentor.setCourseTypeVideo(mentorDetails.isCourseTypeVideo());
+		mentor.setCourseTypePPT(mentorDetails.isCourseTypePPT());
+		mentor.setCourseTypeDemo(mentorDetails.isCourseTypeDemo());
+		mentor.setExperience(mentorDetails.getExperience());
+		mentor.setLinkedInURL(mentorDetails.getLinkedInURL());
+//		mentor.setSkills(mentorDetails.getSkills());
+		mentor.setTimeSlot(mentorDetails.getTimeslot());
+		mentor.setTimezoneId(mentorDetails.getTimezone());
+		mentorRepo.save(mentor);
+	}
+	public SignUpModel getMentorDetails(int mentorId) {
+		MentorDetails mentor = mentorRepo.findById(mentorId).get();
+		SignUpModel result = new SignUpModel();
+//		result.setUserName(mentor.getUserDetails().getUserName());
+		result.setFullName(mentor.getUserDetails().getFullName());
+		result.setUserPassword(mentor.getUserDetails().getUserPassword());
+		result.setAccountStatus(null);
+		result.setCourseTypeBlog(mentor.isCourseTypeBlog());
+		result.setCourseTypeVideo(mentor.isCourseTypeVideo());;
+		result.setCourseTypePPT(mentor.isCourseTypePPT());
+		result.setCourseTypeDemo(mentor.isCourseTypeDemo());
+		result.setExperience(mentor.getExperience());
+		result.setTimeslot(mentor.getTimeSlot());
+		result.setTimezone(mentor.getTimezoneId());
+		result.setLinkedInURL(mentor.getLinkedInURL());
+		return result;
+	}
+	public List<Technology> getSkills(int mentorId) {
+		return mentorRepo.findMentorSkills(mentorId);
 	}
 	
 	

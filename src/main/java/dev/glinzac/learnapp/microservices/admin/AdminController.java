@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.glinzac.learnapp.TechnologyService;
 import dev.glinzac.learnapp.entities.Technology;
+import dev.glinzac.learnapp.models.CommissionModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
+import dev.glinzac.learnapp.models.PaymentModel;
 
 @RestController
 @RequestMapping("/admin")
@@ -53,9 +55,27 @@ public class AdminController {
 	}
 	
 //	getCommissionList
+	@RequestMapping(value="/getCommissionList",method = RequestMethod.GET)
+	public List<CommissionModel> getCommissionList(){
+		return adminService.getCommissionList();
+	}
+	
 //	updateCommission
+	@RequestMapping(value="/updateCommission/{courseid}/{newcomm}",method = RequestMethod.GET)
+	public void updateCommission(@PathVariable(name = "courseid") String courseId , @PathVariable(name = "newcomm") String newComm){
+		 adminService.updateCommission(courseId,Double.parseDouble(newComm));
+	}
+	
 //	getPaymentLog
-//	blockUsers | unblockUsers
+	@RequestMapping(value="/getPaymentLog",method = RequestMethod.GET)
+	public List<PaymentModel> getPaymentLog(){
+		 return adminService.getPayments();
+	}
+	
 //	getUsersList
+	
+//	blockUsers | unblockUsers
+
 //	generateReport
+	
 }

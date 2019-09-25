@@ -119,7 +119,11 @@ public class MentorController {
 	public List<MentorProgressModel> viewMentorProgress(@PathVariable  String mentorId){
 		return mentorService.viewProgress(Integer.parseInt(mentorId));
 	}
-//	updateInProgress
 	
+//	updateInProgress
+	@RequestMapping(value = "/updateMentorProgress",method = RequestMethod.PUT)
+	public void updateMentorProgress(@RequestBody MentorProgressModel mentorCourse){
+		 mentorService.updateProgress(mentorCourse);
+	}
 	
 }

@@ -14,9 +14,13 @@ import dev.glinzac.learnapp.entities.CardDetails;
 import dev.glinzac.learnapp.entities.CourseDetails;
 import dev.glinzac.learnapp.entities.MentorDetails;
 import dev.glinzac.learnapp.entities.Technology;
+import dev.glinzac.learnapp.entities.UserCompleted;
 import dev.glinzac.learnapp.entities.UserDetails;
+import dev.glinzac.learnapp.entities.UserProgress;
 import dev.glinzac.learnapp.microservices.user.CardDetailsRepository;
+import dev.glinzac.learnapp.microservices.user.UserCompletedRepository;
 import dev.glinzac.learnapp.microservices.user.UserDetailsRepository;
+import dev.glinzac.learnapp.microservices.user.UserTrainingRepository;
 import dev.glinzac.learnapp.models.CalendarModel;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CourseModel;
@@ -41,6 +45,12 @@ public class MentorService {
 	
 	@Autowired
 	CardDetailsRepository cardRepo;
+	
+	@Autowired
+	UserTrainingRepository progressRepo;
+	
+	@Autowired
+	UserCompletedRepository completedRepo;
 	
 //	add new course
 	public void addCourse(CourseModel course) {
@@ -247,9 +257,45 @@ public class MentorService {
 		});
 		return result;
 	}
-	public List<MentorProgressModel> viewProgress(int parseInt) {
-		
-		return null;
+	public List<MentorProgressModel> viewProgress(int mentorId) {
+		List<UserProgress> courses = progressRepo.findTrainerCourses(mentorId);
+		List<MentorProgressModel> result = new ArrayList<MentorProgressModel>();
+		courses.forEach(course->{
+			MentorProgressModel item = new MentorProgressModel();
+			item.setCourseId(course.getCourseDetails().getCourseId());
+			item.setCourseStatus(course.getCourseStatus());
+			item.setDateOfJoin(course.getStartDate());
+			item.setProgress(course.getProgress());
+			item.setTimeSlot(course.getTimeslot());
+			item.setUsername(course.getUserDetails().getUserName());
+			item.setWithdrawCount(course.getWithdrawCount());
+			result.add(item);
+		});
+		List<UserCompleted> completedCourses = completedRepo.findTrainerCourses(mentorId);
+		completedCourses.forEach(course->{
+			MentorProgressModel item = new MentorProgressModel();
+			item.setCourseId(course.getCourseDetails().getCourseId());
+			item.setCourseStatus("COMPLETED");
+			item.setDateOfJoin(course.getStartDate());
+			item.setProgress(0.1D);
+			item.setTimeSlot(course.getTimeslot());
+			item.setUsername(course.getUserDetails().getUserName());
+			item.setWithdrawCount(course.getWithdrawCount());
+			result.add(item);
+		});
+		return result;
+	}
+	public void updateProgress(MentorProgressModel mentorCourse) {
+		UserProgress progressCourse = progressRepo.findCourse(mentorCourse.getUsername(), mentorCourse.getCourseId()).orElse(null);
+		if(progressCourse == null) {
+			UserCompleted completedCourse = completedRepo.findCourse(mentorCourse.getUsername(), mentorCourse.getCourseId()).get();
+			completedCourse.setWithdrawCount(mentorCourse.getWithdrawCount());
+			completedRepo.save(completedCourse);
+		}else {
+			progressCourse.setCourseStatus(mentorCourse.getCourseStatus());
+			progressCourse.setWithdrawCount(mentorCourse.getWithdrawCount());
+			progressRepo.save(progressCourse);
+		}
 	}
 	
 	

@@ -54,6 +54,34 @@ public class MentorProgressModel {
 	public int getWithdrawCount() {
 		return withdrawCount;
 	}
+
+	public void setDateOfJoin(Date dateOfJoin) {
+		this.dateOfJoin = dateOfJoin;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public void setCourseStatus(String courseStatus) {
+		this.courseStatus = courseStatus;
+	}
+
+	public void setTimeSlot(String timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+
+	public void setProgress(Double progress) {
+		this.progress = progress;
+	}
+
+	public void setWithdrawCount(int withdrawCount) {
+		this.withdrawCount = withdrawCount;
+	}
 	
 	
 }

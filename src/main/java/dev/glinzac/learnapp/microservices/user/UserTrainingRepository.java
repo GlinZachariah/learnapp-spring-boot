@@ -20,4 +20,7 @@ public interface UserTrainingRepository extends CrudRepository<UserProgress, Int
 	
 	@Query(value="select * from user_progress where user_name = :username",nativeQuery = true)
 	List<UserProgress> findTrainingInProgress(@Param(value="username") String username);
+
+	@Query(value="select * from user_progress where course_id IN (select course_id from course_details where mentor_id = :mentorId)",nativeQuery = true)
+	List<UserProgress> findTrainerCourses(@Param(value="mentorId") int mentorId);
 }

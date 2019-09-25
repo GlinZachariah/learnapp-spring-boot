@@ -9,6 +9,6 @@ import dev.glinzac.learnapp.entities.UserDetails;
 
 public interface UserDetailsRepository extends CrudRepository<UserDetails, String> {
 	
-	@Query(value = "select * from user_details")
+	@Query(value = "select * from user_details",nativeQuery = true)
 	List<UserDetails> getUsers();
 }

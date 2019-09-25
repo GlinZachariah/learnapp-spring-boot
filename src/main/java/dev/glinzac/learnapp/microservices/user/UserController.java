@@ -2,6 +2,7 @@ package dev.glinzac.learnapp.microservices.user;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,8 +91,10 @@ public class UserController {
 	
 //*	signUpUser
 	@RequestMapping(value="/signUpUser",method = RequestMethod.POST)
-	public void signUpUser(@RequestBody UserDetails user) {
+	public String signUpUser(@RequestBody UserDetails user) {
+		System.out.print("==============>"+user.getFullName());
 		userService.addUser(user);
+		return "success";
 	}
 	
 //	searchCourses

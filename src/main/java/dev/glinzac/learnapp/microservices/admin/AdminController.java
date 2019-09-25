@@ -23,6 +23,7 @@ public class AdminController {
 	@Autowired
 	TechnologyService technologyService;
 	
+//	Authenticate
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String authenticate(@RequestBody CredentialsModel loginData) {
 		
@@ -33,18 +34,28 @@ public class AdminController {
 		return "Failed";
 	}
 	
+//	getTechnologyList
 	@RequestMapping(value="/getTechnologies",method = RequestMethod.GET)
 	public List<Technology> getTechnologies(){
 		return technologyService.getTechnologyList();
 	}
 	
+//	addTechnology
 	@RequestMapping(value="/addTechology/{technology}",method = RequestMethod.GET)
 	public void addTech(@PathVariable(name = "technology") String technology){
 		technologyService.addTechnology(technology);;
 	}
 	
+//	deleteTechnology
 	@RequestMapping(value="/deleteTechology/{technology}",method = RequestMethod.GET)
 	public void deleteTech(@PathVariable(name = "technology") String technology){
 		technologyService.deleteTechnology(technology);;
 	}
+	
+//	getCommissionList
+//	updateCommission
+//	getPaymentLog
+//	blockUsers | unblockUsers
+//	getUsersList
+//	generateReport
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.glinzac.learnapp.TechnologyService;
 import dev.glinzac.learnapp.entities.Technology;
+import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.models.CommissionModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.PaymentModel;
@@ -73,9 +74,19 @@ public class AdminController {
 	}
 	
 //	getUsersList
-	
+	@RequestMapping(value = "/getUsers",method = RequestMethod.GET)
+	public List<UserDetails> getUserDetails(){
+		return adminService.getUsers();
+	}
 //	blockUsers | unblockUsers
-
+	@RequestMapping(value = "/updateUser/{username}",method = RequestMethod.GET)
+	public void updateUserDetails(@PathVariable(name = "username") String username){
+		adminService.updateUser(username);
+	}
 //	generateReport
+	@RequestMapping(value = "/getReport/{mentorId}",method = RequestMethod.GET)
+	public List<PaymentModel> getMentorCourses(@PathVariable(name = "mentorId") String mentorId){
+		return adminService.getMentorCourse(Integer.parseInt(mentorId));
+	}
 	
 }

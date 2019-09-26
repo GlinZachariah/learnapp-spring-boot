@@ -15,6 +15,11 @@ public class AdminEntity {
 	@Column(name="admin_password")
 	private String adminPassword;
 	
+	public AdminEntity(String adminName, String adminPassword) {
+		super();
+		this.adminName = adminName;
+		this.adminPassword = adminPassword;
+	}
 	public String getAdminName() {
 		return adminName;
 	}

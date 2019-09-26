@@ -1,14 +1,18 @@
 package dev.glinzac.learnapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import dev.glinzac.learnapp.entities.AdminEntity;
+import dev.glinzac.learnapp.microservices.admin.AdminRepository;
 import dev.glinzac.learnapp.microservices.admin.AdminService;
 import dev.glinzac.learnapp.microservices.mentor.MentorService;
 import dev.glinzac.learnapp.microservices.user.UserService;
+import dev.glinzac.learnapp.models.CredentialsModel;
 
 @SpringBootApplication
 public class LearnappApplication {
@@ -34,9 +38,17 @@ public class LearnappApplication {
 		return new TechnologyService();
 	}
 	
+	@Autowired
+	AdminRepository adminRepo;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(LearnappApplication.class, args);
+		new LearnappApplication().createAdminCredentials();
+		
 	}
 	
+	public void createAdminCredentials() {
+		AdminEntity adminDefault = new AdminEntity("admin", "admin");
+		adminRepo.save(adminDefault);
+	}
 }

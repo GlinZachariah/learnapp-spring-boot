@@ -3,6 +3,8 @@ package dev.glinzac.learnapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import dev.glinzac.learnapp.microservices.admin.AdminService;
 import dev.glinzac.learnapp.microservices.mentor.MentorService;
@@ -32,9 +34,9 @@ public class LearnappApplication {
 		return new TechnologyService();
 	}
 	
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(LearnappApplication.class, args);
 	}
-
+	
 }

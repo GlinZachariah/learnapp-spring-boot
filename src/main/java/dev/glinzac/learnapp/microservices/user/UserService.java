@@ -15,6 +15,7 @@ import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
 import dev.glinzac.learnapp.models.UserCompletedTrainingModel;
 import dev.glinzac.learnapp.models.UserDetailsModel;
+import dev.glinzac.learnapp.models.UserModel;
 import dev.glinzac.learnapp.models.UserProgressTrainingModel;
 
 @Service
@@ -163,8 +164,14 @@ public class UserService {
 			userTrainingDetails.save(newData);
 	}
 
-	public void addUser(UserDetails user) {
-		userDetails.save(user);
+	public void addUser(UserModel user) {
+		UserDetails newUser = new UserDetails();
+		newUser.setAccountStatus(user.getAccountStatus());
+		newUser.setFullName(user.getFullName());
+		newUser.setUserName(user.getUserName());
+		newUser.setUserRole(user.getUserRole());
+		newUser.setUserPassword(user.getUserPassword());
+		userDetails.save(newUser);
 	}
 
 	

@@ -23,7 +23,6 @@ import dev.glinzac.learnapp.models.UserModel;
 import dev.glinzac.learnapp.models.UserProgressTrainingModel;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping("/users/")
 public class UserController {
 	
@@ -93,12 +92,9 @@ public class UserController {
 	
 	
 //*	signUpUser
-//	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value="/signUpUser",method = RequestMethod.POST)
-	public String signUpUser(@RequestBody UserModel user) {
-//		System.out.print("==============>"+user.getAccountStatus());
+	public void signUpUser(@RequestBody UserModel user) {
 		userService.addUser(user);
-		return "success";
 	}
 	
 //	searchCourses

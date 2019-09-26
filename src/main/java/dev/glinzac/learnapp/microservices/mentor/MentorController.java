@@ -30,6 +30,16 @@ public class MentorController {
 //*	signUp Mentor
 	@RequestMapping(value = "/signUp" ,method = RequestMethod.POST)
 	public void signUpMentor(@RequestBody SignUpModel signUp) {
+		System.out.println(signUp.getUserName());
+		System.out.println(signUp.getAccountStatus());
+		System.out.println(signUp.getExperience());
+		System.out.println(signUp.getFullName());
+		System.out.println(signUp.getLinkedInURL());
+		System.out.println(signUp.getTimeslot());
+		System.out.println(signUp.getTimezone());
+		System.out.println(signUp.getUserPassword());
+		System.out.println(signUp.getUserRole());
+		System.out.println(signUp.getSkills());
 		mentorService.signUp(signUp);
 	}
 	

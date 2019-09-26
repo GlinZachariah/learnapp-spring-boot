@@ -171,6 +171,11 @@ public class UserService {
 		newUser.setUserName(user.getUserName());
 		newUser.setUserRole(user.getUserRole());
 		newUser.setUserPassword(user.getUserPassword());
+		System.out.println(user.getAccountStatus());
+		System.out.println(user.getFullName());
+		System.out.println(user.getUserName());
+		System.out.println(user.getUserPassword());
+		System.out.println(user.getUserRole());
 		userDetails.save(newUser);
 	}
 

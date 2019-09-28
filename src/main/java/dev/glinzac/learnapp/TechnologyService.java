@@ -18,9 +18,9 @@ public class TechnologyService {
 		return list;
 	}
 //	add Technology
-	public void addTechnology(String skillname) {
+	public void addTechnology(Technology skillname) {
 		Technology tech = new Technology();
-		tech.setSkillName(skillname);
+		tech.setSkillName(skillname.getSkillName());
 		technologyRepo.save(tech);
 	}
 	

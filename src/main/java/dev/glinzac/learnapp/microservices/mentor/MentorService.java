@@ -149,6 +149,10 @@ public class MentorService {
 		return mentor.getUserDetails().getUserName();
 	}
 	
+	public int findMentorId(String username) {
+		return mentorRepo.findMentorId(username).get();
+	}
+	
 	public void updateCard(CardDetailsModel cardDetail) {
 		String username =cardDetail.getUsername();
 		int count = cardRepo.checkCardDetails(username);
@@ -219,18 +223,20 @@ public class MentorService {
 	public SignUpModel getMentorDetails(int mentorId) {
 		MentorDetails mentor = mentorRepo.findById(mentorId).get();
 		SignUpModel result = new SignUpModel();
-//		result.setUserName(mentor.getUserDetails().getUserName());
+		result.setUserName(mentor.getUserDetails().getUserName());
 		result.setFullName(mentor.getUserDetails().getFullName());
 		result.setUserPassword(mentor.getUserDetails().getUserPassword());
-		result.setAccountStatus(null);
+		result.setAccountStatus(mentor.getUserDetails().getAccountStatus());
 		result.setCourseTypeBlog(mentor.isCourseTypeBlog());
 		result.setCourseTypeVideo(mentor.isCourseTypeVideo());;
 		result.setCourseTypePPT(mentor.isCourseTypePPT());
 		result.setCourseTypeDemo(mentor.isCourseTypeDemo());
 		result.setExperience(mentor.getExperience());
+		result.setUserRole(mentor.getUserDetails().getUserRole());
 		result.setTimeslot(mentor.getTimeSlot());
 		result.setTimezone(mentor.getTimezoneId());
 		result.setLinkedInURL(mentor.getLinkedInURL());
+		result.setSkills(getSkills(mentorId));
 		return result;
 	}
 	public List<Technology> getSkills(int mentorId) {

@@ -103,14 +103,16 @@ public class MentorController {
 	}
 	
 //	getDetails
-	@RequestMapping(value = "/getMentorDetails/{mentorId}",method = RequestMethod.GET)
-	public SignUpModel getMentorDetails(@PathVariable String mentorId) {
-		return mentorService.getMentorDetails(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/getMentorDetails/{mentorUsername}",method = RequestMethod.GET)
+	public SignUpModel getMentorDetails(@PathVariable String mentorUsername) {
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.getMentorDetails(mentorId);
 	}
 //*	getMentorSkills
-	@RequestMapping(value = "/getMentorSkills/{mentorId}",method = RequestMethod.GET)
-	public List<Technology> getSkills(@PathVariable  String mentorId){
-		return mentorService.getSkills(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/getMentorSkills/{mentorUsername}",method = RequestMethod.GET)
+	public List<Technology> getSkills(@PathVariable  String mentorUsername){
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.getSkills(mentorId);
 	}
 	
 //*	updateMentorSkills

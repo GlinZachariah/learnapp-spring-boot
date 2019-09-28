@@ -38,17 +38,8 @@ public class LearnappApplication {
 		return new TechnologyService();
 	}
 	
-	@Autowired
-	AdminRepository adminRepo;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(LearnappApplication.class, args);
-		new LearnappApplication().createAdminCredentials();
-		
 	}
 	
-	public void createAdminCredentials() {
-		AdminEntity adminDefault = new AdminEntity("admin", "admin");
-		adminRepo.save(adminDefault);
-	}
 }

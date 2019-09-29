@@ -3,34 +3,32 @@ package dev.glinzac.learnapp.models;
 import java.sql.Date;
 
 public class CalendarModel {
-	private int calendarId;
 	private Date fromDate;
 	private Date tillDate;
 	private int timeSlot;
 	private String status;
-	private int mentorId;
+	private String mentorName;
 	
 	public CalendarModel() {
 		
 	}
 	
-	public CalendarModel(int calendarId,Date fromDate, Date tillDate, int timeSlot, String status,
-			int mentorId) {
+	public CalendarModel(Date fromDate, Date tillDate, int timeSlot, String status,
+			String mentorName) {
 		super();
-		this.calendarId = calendarId;
 		this.fromDate = fromDate;
 		this.tillDate = tillDate;
 		this.timeSlot = timeSlot;
 		this.status = status;
-		this.mentorId = mentorId;
+		this.mentorName = mentorName;
 	}
 	
-	public int getCalendarId() {
-		return calendarId;
+	public String getMentorName() {
+		return mentorName;
 	}
 
-	public void setCalendarId(int calendarId) {
-		this.calendarId = calendarId;
+	public void setMentorName(String mentorName) {
+		this.mentorName = mentorName;
 	}
 
 	public Date getFromDate() {
@@ -50,12 +48,6 @@ public class CalendarModel {
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public int getMentorId() {
-		return mentorId;
-	}
-	public void setMentorId(int mentorId) {
-		this.mentorId = mentorId;
 	}
 
 	public Date getTillDate() {

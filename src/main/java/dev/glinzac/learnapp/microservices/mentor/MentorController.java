@@ -49,13 +49,14 @@ public class MentorController {
 		mentorService.addCourse(course);
 	}
 //	getCoursesList
-	@RequestMapping(value = "/getCoursesList/{mentorId}",method = RequestMethod.GET)
-	public List<CourseModel> getCourseList(@PathVariable String mentorId){
-		return mentorService.getCourses(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/getCoursesList/{mentorUsername}",method = RequestMethod.GET)
+	public List<CourseModel> getCourseList(@PathVariable String mentorUsername){
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.getCourses(mentorId);
 	}
 	
 //	deleteCourse
-	@RequestMapping(value = "/deleteCourse/{courseId}",method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteCourse/{courseId}",method = RequestMethod.DELETE)
 	public void deleteCourse(@PathVariable String courseId) {
 		mentorService.deleteCourse(courseId);
 	}
@@ -63,19 +64,24 @@ public class MentorController {
 //	mentorCalendar add 
 	@RequestMapping(value = "/addCalendar",method = RequestMethod.POST)
 	public void addCalendar(@RequestBody CalendarModel calendarData) {
+		System.out.println(calendarData.getMentorName());
+		System.out.println(calendarData.getStatus());
+		System.out.println(calendarData.getTimeSlot());
+		System.out.println(calendarData.getFromDate());
 		mentorService.saveCalendar(calendarData);
 	}
 	
 //	mentorCalendar delete
-	@RequestMapping(value = "/deleteCalendar/{calendarId}",method = RequestMethod.GET)
-	public void deleteCalendar(@PathVariable String calendarId) {
-		mentorService.removeCalendar(Integer.parseInt(calendarId));
+	@RequestMapping(value = "/deleteCalendar",method = RequestMethod.PUT)
+	public void deleteCalendar(@RequestBody CalendarModel calendar) {
+		mentorService.removeCalendar(calendar);
 	}
 	
 //	getMentorCalendar
-	@RequestMapping(value = "/findCalendar/{mentorId}",method = RequestMethod.GET)
-	public List<CalendarModel> findCalendarByMentor(@PathVariable String mentorId) {
-		return mentorService.findCalendar(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/findCalendar/{mentorUsername}",method = RequestMethod.GET)
+	public List<CalendarModel> findCalendarByMentor(@PathVariable String mentorUsername) {
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.findCalendar(mentorId);
 	}
 
 //	findUserName
@@ -137,5 +143,6 @@ public class MentorController {
 	public void updateMentorProgress(@RequestBody MentorProgressModel mentorCourse){
 		 mentorService.updateProgress(mentorCourse);
 	}
+	
 	
 }

@@ -49,6 +49,11 @@ public class SearchCourseService {
 						newDataItem.setTechnology(requestData.getTechnology());
 						newDataItem.setTotalTime(course.getTotalTime());
 						newDataItem.setTrainerName(course.getMentorDetails().getUserDetails().getFullName());
+						newDataItem.setTotalCount(course.getTotalTraineeCount());
+						newDataItem.setActiveCount(course.getTraineeInProgress());
+						newDataItem.setCompletedCount(course.getTraineeCompleted());
+						newDataItem.setAvgCourseRating(course.getAverageRating());
+						
 						result.add(newDataItem);
 					}
 				});

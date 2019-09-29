@@ -60,20 +60,20 @@ public class MentorService {
 		newCourse.setCommission(0.1D);
 		newCourse.setCourseId(course.getCourseid());
 		newCourse.setCourseName(course.getCourseName());		
-		int id = mentorRepo.findMentorId(course.getTrainerName()).orElse(0);
-		if(id!=0) {
-			MentorDetails mentor = mentorRepo.findById(id).get();
-			newCourse.setMentorDetails(mentor);
-		}
+		
 		newCourse.setSkills(course.getTechnology());
 		newCourse.setTotalTraineeCount(0);
 		newCourse.setTraineeCompleted(0);
 		newCourse.setTraineeInProgress(0);
 		newCourse.setTotalTime(course.getTotalTime());
-		
-		courseRepo.save(newCourse);
-		
+		int id = mentorRepo.findMentorId(course.getTrainerName()).orElse(0);
+		if(id!=0) {
+			MentorDetails mentor = mentorRepo.findById(id).get();
+			newCourse.setMentorDetails(mentor);
+			courseRepo.save(newCourse);
+		}
 	}
+	
 //	mentor sign up
 	public void signUp(SignUpModel signUp) {
 		UserDetails user = new UserDetails();
@@ -121,21 +121,24 @@ public class MentorService {
 		CalendarEntity data = new CalendarEntity();
 		data.setFromDate(calendarData.getFromDate());
 		data.setTillDate(calendarData.getTillDate());
-		data.setMentorDetails(mentorRepo.findById(calendarData.getMentorId()).get());
+		data.setMentorDetails(mentorRepo.findById(mentorRepo.findMentorId(calendarData.getMentorName()).get()).get() );
 		data.setStatus(calendarData.getStatus());
 		data.setTimeSlot(calendarData.getTimeSlot());
 		calendarRepo.save(data);
 	}
-	public void removeCalendar(int calendarId) {
-		calendarRepo.deleteById(calendarId);
+	public void removeCalendar(CalendarModel calendar) {
+		int mentorId = findMentorId(calendar.getMentorName());
+		CalendarEntity  cal = calendarRepo.getMentorCalendar(calendar.getFromDate(),calendar.getTillDate(),calendar.getTimeSlot(),mentorId).get();
+		calendarRepo.deleteById(cal.getCalendarId());
 	}
+	
 	public List<CalendarModel> findCalendar(int mentorId) {
 		List<CalendarEntity>  mentorCalendarData = calendarRepo.findMentorCalendar(mentorId).get();
 		List<CalendarModel> result = new ArrayList<CalendarModel>();
 		mentorCalendarData.forEach(data->{
 			CalendarModel newData = new CalendarModel();
-			newData.setCalendarId(data.getCalendarId());
-			newData.setMentorId(data.getMentorDetails().getMentorId());
+//			newData.setCalendarId(data.getCalendarId());
+			newData.setMentorName(data.getMentorDetails().getUserDetails().getUserName());
 			newData.setStatus(data.getStatus());
 			newData.setTimeSlot(data.getTimeSlot());
 			newData.setFromDate(data.getFromDate());
@@ -303,6 +306,8 @@ public class MentorService {
 			progressRepo.save(progressCourse);
 		}
 	}
+
+	
 	
 	
 }

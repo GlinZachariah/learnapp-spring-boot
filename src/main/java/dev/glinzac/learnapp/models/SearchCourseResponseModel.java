@@ -4,36 +4,69 @@ public class SearchCourseResponseModel {
 	private String courseId;
 	private String courseName;
 	private String trainerName;
+	private int experience;
 	private String technology;
 	private boolean materialVideo;
 	private boolean materialDemo;
 	private boolean materialPPT;
 	private boolean materialBlog;
-	private int experience;
+	private int totalCount;
+	private int activeCount;
+	private int completedCount;
 	private Double trainingCharges;
 	private Double serviceCharges;
 	private int totalTime;
+	private int avgCourseRating;
 	
 	public SearchCourseResponseModel() {
 		
 	}
-	public SearchCourseResponseModel(String courseId, String courseName, String trainerName, String technology,
-			boolean materialVideo, boolean materialDemo, boolean materialPPT, boolean materialBlog, int experience,
-			Double trainingCharges, Double serviceCharges, int totalTime) {
+	
+	
+
+	
+
+	public SearchCourseResponseModel(String courseId, String courseName, String trainerName, int experience,
+			String technology, boolean materialVideo, boolean materialDemo, boolean materialPPT, boolean materialBlog,
+			int totalCount, int activeCount, int completedCount, Double trainingCharges, Double serviceCharges,
+			int totalTime, int avgCourseRating) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.trainerName = trainerName;
+		this.experience = experience;
 		this.technology = technology;
 		this.materialVideo = materialVideo;
 		this.materialDemo = materialDemo;
 		this.materialPPT = materialPPT;
 		this.materialBlog = materialBlog;
-		this.experience = experience;
+		this.totalCount = totalCount;
+		this.activeCount = activeCount;
+		this.completedCount = completedCount;
 		this.trainingCharges = trainingCharges;
 		this.serviceCharges = serviceCharges;
 		this.totalTime = totalTime;
+		this.avgCourseRating = avgCourseRating;
 	}
+
+	public int getAvgCourseRating() {
+		return avgCourseRating;
+	}
+
+	public void setAvgCourseRating(int avgCourseRating) {
+		this.avgCourseRating = avgCourseRating;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+
+
 	public String getCourseId() {
 		return courseId;
 	}
@@ -82,12 +115,31 @@ public class SearchCourseResponseModel {
 	public void setMaterialBlog(boolean materialBlog) {
 		this.materialBlog = materialBlog;
 	}
-	public int getExperience() {
-		return experience;
+	
+	public int getTotalCount() {
+		return totalCount;
 	}
-	public void setExperience(int experience) {
-		this.experience = experience;
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
+
+	public int getActiveCount() {
+		return activeCount;
+	}
+
+	public void setActiveCount(int activeCount) {
+		this.activeCount = activeCount;
+	}
+
+	public int getCompletedCount() {
+		return completedCount;
+	}
+
+	public void setCompletedCount(int completedCount) {
+		this.completedCount = completedCount;
+	}
+
 	public Double getTrainingCharges() {
 		return trainingCharges;
 	}

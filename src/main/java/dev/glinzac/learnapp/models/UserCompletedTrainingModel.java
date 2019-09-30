@@ -5,14 +5,14 @@ import java.sql.Date;
 public class UserCompletedTrainingModel{
 	private String courseId;
 	private String userName;
-	private String timeSlot;
+	private int timeSlot;
 	private Date startDate;
 	private Date endDate;
 	private int rating;
 	public UserCompletedTrainingModel() {
 		
 	}
-	public UserCompletedTrainingModel(String courseId, String userName, String timeSlot, Date startDate, Date endDate,
+	public UserCompletedTrainingModel(String courseId, String userName, int timeSlot, Date startDate, Date endDate,
 			int rating) {
 		super();
 		this.courseId = courseId;
@@ -34,10 +34,10 @@ public class UserCompletedTrainingModel{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getTimeSlot() {
+	public int getTimeSlot() {
 		return timeSlot;
 	}
-	public void setTimeSlot(String timeSlot) {
+	public void setTimeSlot(int timeSlot) {
 		this.timeSlot = timeSlot;
 	}
 	public Date getStartDate() {

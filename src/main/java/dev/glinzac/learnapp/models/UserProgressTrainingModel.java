@@ -4,21 +4,30 @@ import java.sql.Date;
 
 public class UserProgressTrainingModel {
 	private String courseId;
+	private String courseName;
+	private String trainerName;
+	private String technology;
 	private String userName;
 	private Double progress;
 	private int rating;
 	private String paymentStatus;
 	private String courseStatus;
-	private String timeSlot;
+	private int timeSlot;
 	private Date startDate;
 	public UserProgressTrainingModel() {
 		
 	}
 	
-	public UserProgressTrainingModel(String courseId, String userName, Double progress, int rating,
-			String paymentStatus, String courseStatus, String timeSlot, Date startDate) {
+	
+
+	public UserProgressTrainingModel(String courseId, String courseName, String trainerName, String technology,
+			String userName, Double progress, int rating, String paymentStatus, String courseStatus, int timeSlot,
+			Date startDate) {
 		super();
 		this.courseId = courseId;
+		this.courseName = courseName;
+		this.trainerName = trainerName;
+		this.technology = technology;
 		this.userName = userName;
 		this.progress = progress;
 		this.rating = rating;
@@ -26,6 +35,29 @@ public class UserProgressTrainingModel {
 		this.courseStatus = courseStatus;
 		this.timeSlot = timeSlot;
 		this.startDate = startDate;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getTrainerName() {
+		return trainerName;
+	}
+
+	public void setTrainerName(String trainerName) {
+		this.trainerName = trainerName;
+	}
+
+	public String getTechnology() {
+		return technology;
+	}
+
+	public void setTechnology(String technology) {
+		this.technology = technology;
 	}
 
 	public String getCourseId() {
@@ -58,10 +90,10 @@ public class UserProgressTrainingModel {
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
-	public String getTimeSlot() {
+	public int getTimeSlot() {
 		return timeSlot;
 	}
-	public void setTimeSlot(String timeSlot) {
+	public void setTimeSlot(int timeSlot) {
 		this.timeSlot = timeSlot;
 	}
 	public Date getStartDate() {

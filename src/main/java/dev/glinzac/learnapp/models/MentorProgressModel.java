@@ -3,11 +3,12 @@ package dev.glinzac.learnapp.models;
 import java.sql.Date;
 
 public class MentorProgressModel {
-	private Date dateOfJoin;
+	private Date timestamp;
 	private String username;
 	private String courseId;
 	private String courseStatus;
-	private String timeSlot;
+	private String paymentStatus;
+	private int timeSlot;
 	private Double progress;
 	private int withdrawCount;
 	
@@ -15,21 +16,29 @@ public class MentorProgressModel {
 		
 	}
 
-	public MentorProgressModel(Date dateOfJoin, String username, String courseId, String courseStatus, String timeSlot,
-			Double progress, int withdrawCount) {
+	
+	public MentorProgressModel(Date timestamp, String username, String courseId, String courseStatus,
+			String paymentStatus, int timeSlot, Double progress, int withdrawCount) {
 		super();
-		this.dateOfJoin = dateOfJoin;
+		this.timestamp = timestamp;
 		this.username = username;
 		this.courseId = courseId;
 		this.courseStatus = courseStatus;
+		this.paymentStatus = paymentStatus;
 		this.timeSlot = timeSlot;
 		this.progress = progress;
 		this.withdrawCount = withdrawCount;
 	}
-
-	public Date getDateOfJoin() {
-		return dateOfJoin;
+	
+	public String getPaymentStatus() {
+		return paymentStatus;
 	}
+
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -43,7 +52,7 @@ public class MentorProgressModel {
 		return courseStatus;
 	}
 
-	public String getTimeSlot() {
+	public int getTimeSlot() {
 		return timeSlot;
 	}
 
@@ -55,8 +64,12 @@ public class MentorProgressModel {
 		return withdrawCount;
 	}
 
-	public void setDateOfJoin(Date dateOfJoin) {
-		this.dateOfJoin = dateOfJoin;
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public void setUsername(String username) {
@@ -71,7 +84,7 @@ public class MentorProgressModel {
 		this.courseStatus = courseStatus;
 	}
 
-	public void setTimeSlot(String timeSlot) {
+	public void setTimeSlot(int timeSlot) {
 		this.timeSlot = timeSlot;
 	}
 

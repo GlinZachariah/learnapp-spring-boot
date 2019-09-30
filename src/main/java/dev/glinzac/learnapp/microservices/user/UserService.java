@@ -140,6 +140,9 @@ public class UserService {
 			newUser.setStartDate(user.getStartDate());
 			newUser.setTimeSlot(user.getTimeslot());
 			newUser.setUserName(user.getUserDetails().getUserName());
+			newUser.setCourseName(user.getCourseDetails().getCourseName());
+			newUser.setTechnology(user.getCourseDetails().getSkills().getSkillName());
+			newUser.setTrainerName(user.getCourseDetails().getMentorDetails().getUserDetails().getFullName());
 			currentData.add(newUser);
 		});
 		return currentData; 

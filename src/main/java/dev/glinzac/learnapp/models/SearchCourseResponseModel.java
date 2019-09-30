@@ -1,5 +1,7 @@
 package dev.glinzac.learnapp.models;
 
+import java.sql.Date;
+
 public class SearchCourseResponseModel {
 	private String courseId;
 	private String courseName;
@@ -17,6 +19,8 @@ public class SearchCourseResponseModel {
 	private Double serviceCharges;
 	private int totalTime;
 	private int avgCourseRating;
+	private int timeSlot;
+	private Date startDate;
 	
 	public SearchCourseResponseModel() {
 		
@@ -29,7 +33,7 @@ public class SearchCourseResponseModel {
 	public SearchCourseResponseModel(String courseId, String courseName, String trainerName, int experience,
 			String technology, boolean materialVideo, boolean materialDemo, boolean materialPPT, boolean materialBlog,
 			int totalCount, int activeCount, int completedCount, Double trainingCharges, Double serviceCharges,
-			int totalTime, int avgCourseRating) {
+			int totalTime, int avgCourseRating, int timeSlot,Date startDate) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
@@ -47,6 +51,33 @@ public class SearchCourseResponseModel {
 		this.serviceCharges = serviceCharges;
 		this.totalTime = totalTime;
 		this.avgCourseRating = avgCourseRating;
+		this.timeSlot = timeSlot;
+		this.startDate = startDate;
+	}
+	
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+
+
+	public int getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(int timeSlot) {
+		this.timeSlot = timeSlot;
 	}
 
 	public int getAvgCourseRating() {

@@ -26,7 +26,7 @@ public class UserCompleted {
 	private UserDetails userDetails;
 	
 	private int rating;
-	private String timeslot;
+	private int timeslot;
 	private Date startDate;
 	private Date endDate;
 	private int withdrawCount;
@@ -49,10 +49,10 @@ public class UserCompleted {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getTimeslot() {
+	public int getTimeslot() {
 		return timeslot;
 	}
-	public void setTimeslot(String timeslot) {
+	public void setTimeslot(int timeslot) {
 		this.timeslot = timeslot;
 	}
 	public Date getStartDate() {

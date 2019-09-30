@@ -273,11 +273,12 @@ public class MentorService {
 			MentorProgressModel item = new MentorProgressModel();
 			item.setCourseId(course.getCourseDetails().getCourseId());
 			item.setCourseStatus(course.getCourseStatus());
-			item.setDateOfJoin(course.getStartDate());
+			item.setTimestamp(course.getStartDate());
 			item.setProgress(course.getProgress());
 			item.setTimeSlot(course.getTimeslot());
 			item.setUsername(course.getUserDetails().getUserName());
 			item.setWithdrawCount(course.getWithdrawCount());
+			item.setPaymentStatus(course.getPaymentStatus());
 			result.add(item);
 		});
 		List<UserCompleted> completedCourses = completedRepo.findTrainerCourses(mentorId);
@@ -285,7 +286,7 @@ public class MentorService {
 			MentorProgressModel item = new MentorProgressModel();
 			item.setCourseId(course.getCourseDetails().getCourseId());
 			item.setCourseStatus("COMPLETED");
-			item.setDateOfJoin(course.getStartDate());
+			item.setTimestamp(course.getStartDate());
 			item.setProgress(0.1D);
 			item.setTimeSlot(course.getTimeslot());
 			item.setUsername(course.getUserDetails().getUserName());

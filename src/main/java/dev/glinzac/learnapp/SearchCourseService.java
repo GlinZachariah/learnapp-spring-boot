@@ -53,7 +53,8 @@ public class SearchCourseService {
 						newDataItem.setActiveCount(course.getTraineeInProgress());
 						newDataItem.setCompletedCount(course.getTraineeCompleted());
 						newDataItem.setAvgCourseRating(course.getAverageRating());
-						
+						newDataItem.setTimeSlot(requestData.getTimeSlot());
+						newDataItem.setStartDate(requestData.getStartDate());
 						result.add(newDataItem);
 					}
 				});

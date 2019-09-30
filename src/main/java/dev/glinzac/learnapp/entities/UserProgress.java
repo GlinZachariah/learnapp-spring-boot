@@ -26,7 +26,7 @@ public class UserProgress {
 	private UserDetails userDetails;
 	
 	private int rating;
-	private String timeslot;
+	private int timeslot;
 	private Date startDate;
 	private String courseStatus;
 	private String paymentStatus;
@@ -36,7 +36,7 @@ public class UserProgress {
 		
 	}
 	public UserProgress(int progressId, CourseDetails courseDetails, UserDetails userDetails, int rating,
-			String timeslot, Date startDate, String courseStatus, String paymentStatus, Double progress,
+			int timeslot, Date startDate, String courseStatus, String paymentStatus, Double progress,
 			int withdrawCount) {
 		super();
 		this.progressId = progressId;
@@ -74,10 +74,10 @@ public class UserProgress {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getTimeslot() {
+	public int getTimeslot() {
 		return timeslot;
 	}
-	public void setTimeslot(String timeslot) {
+	public void setTimeslot(int timeslot) {
 		this.timeslot = timeslot;
 	}
 	public Date getStartDate() {

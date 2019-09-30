@@ -133,9 +133,10 @@ public class MentorController {
 	}
 	
 //	InProgress
-	@RequestMapping(value = "/viewMentorProgress/{mentorId}",method = RequestMethod.GET)
-	public List<MentorProgressModel> viewMentorProgress(@PathVariable  String mentorId){
-		return mentorService.viewProgress(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/viewMentorProgress/{mentorUsername}",method = RequestMethod.GET)
+	public List<MentorProgressModel> viewMentorProgress(@PathVariable  String mentorUsername){
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.viewProgress(mentorId);
 	}
 	
 //	updateInProgress

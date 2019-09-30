@@ -66,6 +66,8 @@ public class MentorService {
 		newCourse.setTraineeCompleted(0);
 		newCourse.setTraineeInProgress(0);
 		newCourse.setTotalTime(course.getTotalTime());
+		newCourse.setTotalRevenue(0.0D);
+		newCourse.setMentorEarned(0.0D);
 		int id = mentorRepo.findMentorId(course.getTrainerName()).orElse(0);
 		if(id!=0) {
 			MentorDetails mentor = mentorRepo.findById(id).get();
@@ -133,18 +135,20 @@ public class MentorService {
 	}
 	
 	public List<CalendarModel> findCalendar(int mentorId) {
-		List<CalendarEntity>  mentorCalendarData = calendarRepo.findMentorCalendar(mentorId).get();
+		List<CalendarEntity>  mentorCalendarData = calendarRepo.findMentorCalendar(mentorId).orElse(null);
 		List<CalendarModel> result = new ArrayList<CalendarModel>();
-		mentorCalendarData.forEach(data->{
-			CalendarModel newData = new CalendarModel();
-//			newData.setCalendarId(data.getCalendarId());
-			newData.setMentorName(data.getMentorDetails().getUserDetails().getUserName());
-			newData.setStatus(data.getStatus());
-			newData.setTimeSlot(data.getTimeSlot());
-			newData.setFromDate(data.getFromDate());
-			newData.setTillDate(data.getTillDate());
-			result.add(newData);
-		});
+		if(mentorCalendarData != null) {
+			mentorCalendarData.forEach(data->{
+				CalendarModel newData = new CalendarModel();
+//				newData.setCalendarId(data.getCalendarId());
+				newData.setMentorName(data.getMentorDetails().getUserDetails().getUserName());
+				newData.setStatus(data.getStatus());
+				newData.setTimeSlot(data.getTimeSlot());
+				newData.setFromDate(data.getFromDate());
+				newData.setTillDate(data.getTillDate());
+				result.add(newData);
+			});
+		}
 		return result;
 	}
 	public String findUserName(int mentorId) {
@@ -262,6 +266,9 @@ public class MentorService {
 			resultItem.setCourseId(course.getCourseId());
 			resultItem.setCourseRating(course.getAverageRating());
 			resultItem.setTotalTraineeCount(course.getTotalTraineeCount());
+			resultItem.setMentorEarned(course.getMentorEarned());
+			resultItem.setRevenueEarned(course.getTotalRevenue());
+			resultItem.setTechnology(course.getSkills().getSkillName());
 			result.add(resultItem);
 		});
 		return result;

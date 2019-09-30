@@ -40,21 +40,48 @@ public class CourseDetails {
 		private int traineeInProgress;
 		private int averageRating;
 		
+		private Double mentorEarned;
+		private Double totalRevenue;
+		
 		public CourseDetails(){
 			
 		}
 		
-		public CourseDetails(String courseId, String courseName, MentorDetails mentorDetails, Technology skills, Double charges,
-				Double commission) {
+		public CourseDetails(String courseId, String courseName, Double charges, Double commission, int totalTime,
+				MentorDetails mentorDetails, Technology skills, int totalTraineeCount, int traineeCompleted,
+				int traineeInProgress, int averageRating, Double mentorEarned, Double totalRevenue) {
 			super();
 			this.courseId = courseId;
 			this.courseName = courseName;
-			this.mentorDetails = mentorDetails;
-			this.skills = skills;
 			this.charges = charges;
 			this.commission = commission;
+			this.totalTime = totalTime;
+			this.mentorDetails = mentorDetails;
+			this.skills = skills;
+			this.totalTraineeCount = totalTraineeCount;
+			this.traineeCompleted = traineeCompleted;
+			this.traineeInProgress = traineeInProgress;
+			this.averageRating = averageRating;
+			this.mentorEarned = mentorEarned;
+			this.totalRevenue = totalRevenue;
 		}
-		
+
+		public Double getMentorEarned() {
+			return mentorEarned;
+		}
+
+		public void setMentorEarned(Double mentorEarned) {
+			this.mentorEarned = mentorEarned;
+		}
+
+		public Double getTotalRevenue() {
+			return totalRevenue;
+		}
+
+		public void setTotalRevenue(Double totalRevenue) {
+			this.totalRevenue = totalRevenue;
+		}
+
 		public int getTotalTime() {
 			return totalTime;
 		}

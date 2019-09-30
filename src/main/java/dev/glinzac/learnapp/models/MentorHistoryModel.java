@@ -2,23 +2,55 @@ package dev.glinzac.learnapp.models;
 
 public class MentorHistoryModel {
 	private String courseId;
+	private String technology;
 	private int totalTraineeCount;
 	private int courseCompleted;
 	private int courseActive;
 	private int courseRating;
+	private Double mentorEarned;
+	private Double revenueEarned;
 	
 	public MentorHistoryModel() {
 		
 	}
-	public MentorHistoryModel(String courseId, int totalTraineeCount, int courseCompleted, int courseActive,
-			int courseRating) {
+	
+	public MentorHistoryModel(String courseId, String technology, int totalTraineeCount, int courseCompleted,
+			int courseActive, int courseRating, Double mentorEarned, Double revenueEarned) {
 		super();
 		this.courseId = courseId;
+		this.technology = technology;
 		this.totalTraineeCount = totalTraineeCount;
 		this.courseCompleted = courseCompleted;
 		this.courseActive = courseActive;
 		this.courseRating = courseRating;
+		this.mentorEarned = mentorEarned;
+		this.revenueEarned = revenueEarned;
 	}
+	
+	public String getTechnology() {
+		return technology;
+	}
+
+	public void setTechnology(String technology) {
+		this.technology = technology;
+	}
+
+	public Double getMentorEarned() {
+		return mentorEarned;
+	}
+
+	public void setMentorEarned(Double mentorEarned) {
+		this.mentorEarned = mentorEarned;
+	}
+
+	public Double getRevenueEarned() {
+		return revenueEarned;
+	}
+
+	public void setRevenueEarned(Double revenueEarned) {
+		this.revenueEarned = revenueEarned;
+	}
+
 	public String getCourseId() {
 		return courseId;
 	}

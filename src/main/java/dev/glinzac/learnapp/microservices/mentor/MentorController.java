@@ -127,9 +127,10 @@ public class MentorController {
 		mentorService.updateSkills(mentorSkill);
 	}
 //	viewHistory
-	@RequestMapping(value = "/viewMentorHistory/{mentorId}",method = RequestMethod.GET)
-	public List<MentorHistoryModel> viewMentorHistory(@PathVariable  String mentorId){
-		return mentorService.viewHistory(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/viewMentorHistory/{mentorUsername}",method = RequestMethod.GET)
+	public List<MentorHistoryModel> viewMentorHistory(@PathVariable  String mentorUsername){
+		int mentorId = mentorService.findMentorId(mentorUsername);
+		return mentorService.viewHistory(mentorId);
 	}
 	
 //	InProgress

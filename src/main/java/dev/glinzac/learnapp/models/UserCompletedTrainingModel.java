@@ -9,11 +9,18 @@ public class UserCompletedTrainingModel{
 	private Date startDate;
 	private Date endDate;
 	private int rating;
+	private String trainerName;
+	private String technology;
+	private Double charges;
+	
 	public UserCompletedTrainingModel() {
 		
 	}
+	
+	
+	
 	public UserCompletedTrainingModel(String courseId, String userName, int timeSlot, Date startDate, Date endDate,
-			int rating) {
+			int rating, String trainerName, String technology, Double charges) {
 		super();
 		this.courseId = courseId;
 		this.userName = userName;
@@ -21,7 +28,35 @@ public class UserCompletedTrainingModel{
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.rating = rating;
+		this.trainerName = trainerName;
+		this.technology = technology;
+		this.charges = charges;
 	}
+	
+	public String getTechnology() {
+		return technology;
+	}
+
+	public void setTechnology(String technology) {
+		this.technology = technology;
+	}
+
+	public String getTrainerName() {
+		return trainerName;
+	}
+
+	public void setTrainerName(String trainerName) {
+		this.trainerName = trainerName;
+	}
+
+	public Double getCharges() {
+		return charges;
+	}
+
+	public void setCharges(Double charges) {
+		this.charges = charges;
+	}
+
 	public String getCourseId() {
 		return courseId;
 	}

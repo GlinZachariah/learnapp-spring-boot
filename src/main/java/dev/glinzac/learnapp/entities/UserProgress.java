@@ -30,13 +30,13 @@ public class UserProgress {
 	private Date startDate;
 	private String courseStatus;
 	private String paymentStatus;
-	private Double progress;
+	private int progress;
 	private int withdrawCount;
 	public UserProgress() {
 		
 	}
 	public UserProgress(int progressId, CourseDetails courseDetails, UserDetails userDetails, int rating,
-			int timeslot, Date startDate, String courseStatus, String paymentStatus, Double progress,
+			int timeslot, Date startDate, String courseStatus, String paymentStatus, int progress,
 			int withdrawCount) {
 		super();
 		this.progressId = progressId;
@@ -98,10 +98,10 @@ public class UserProgress {
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
-	public Double getProgress() {
+	public int getProgress() {
 		return progress;
 	}
-	public void setProgress(Double progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 	public int getWithdrawCount() {

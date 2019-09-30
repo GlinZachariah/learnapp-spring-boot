@@ -279,15 +279,19 @@ public class MentorService {
 			item.setUsername(course.getUserDetails().getUserName());
 			item.setWithdrawCount(course.getWithdrawCount());
 			item.setPaymentStatus(course.getPaymentStatus());
-			result.add(item);
+			if(item.getCourseStatus().equals("Rejected")) {
+				System.out.println("Rejected Item");
+			}else {
+				result.add(item);
+			}
 		});
 		List<UserCompleted> completedCourses = completedRepo.findTrainerCourses(mentorId);
 		completedCourses.forEach(course->{
 			MentorProgressModel item = new MentorProgressModel();
 			item.setCourseId(course.getCourseDetails().getCourseId());
-			item.setCourseStatus("COMPLETED");
+			item.setCourseStatus("Completed");
 			item.setTimestamp(course.getStartDate());
-			item.setProgress(0.1D);
+			item.setProgress(100);
 			item.setTimeSlot(course.getTimeslot());
 			item.setUsername(course.getUserDetails().getUserName());
 			item.setWithdrawCount(course.getWithdrawCount());

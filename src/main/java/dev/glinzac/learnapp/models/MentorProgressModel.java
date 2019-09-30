@@ -9,7 +9,7 @@ public class MentorProgressModel {
 	private String courseStatus;
 	private String paymentStatus;
 	private int timeSlot;
-	private Double progress;
+	private int progress;
 	private int withdrawCount;
 	
 	public MentorProgressModel() {
@@ -18,7 +18,7 @@ public class MentorProgressModel {
 
 	
 	public MentorProgressModel(Date timestamp, String username, String courseId, String courseStatus,
-			String paymentStatus, int timeSlot, Double progress, int withdrawCount) {
+			String paymentStatus, int timeSlot, int progress, int withdrawCount) {
 		super();
 		this.timestamp = timestamp;
 		this.username = username;
@@ -56,7 +56,7 @@ public class MentorProgressModel {
 		return timeSlot;
 	}
 
-	public Double getProgress() {
+	public int getProgress() {
 		return progress;
 	}
 
@@ -88,13 +88,13 @@ public class MentorProgressModel {
 		this.timeSlot = timeSlot;
 	}
 
-	public void setProgress(Double progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 
 	public void setWithdrawCount(int withdrawCount) {
 		this.withdrawCount = withdrawCount;
 	}
-	
+	 
 	
 }

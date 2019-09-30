@@ -110,6 +110,9 @@ public class UserService {
 			newData.setStartDate(user.getStartDate());
 			newData.setEndDate(user.getEndDate());
 			newData.setRating(user.getRating());
+			newData.setTrainerName(user.getCourseDetails().getMentorDetails().getUserDetails().getFullName());
+			newData.setCharges(user.getCourseDetails().getCharges());
+			newData.setTechnology(user.getCourseDetails().getSkills().getSkillName());
 			userCompletedData.add(newData);
 		});
 		
@@ -164,7 +167,11 @@ public class UserService {
 			newData.setStartDate(data.getStartDate());
 			newData.setTimeslot(data.getTimeSlot());
 			newData.setUserDetails(userDetails.findById(data.getUserName()).get());
-			userTrainingDetails.save(newData);
+			if(newData.getProgress() == 100.0D) {
+				userTrainingDetails.deleteById(newData.getProgressId());
+			}else {
+				userTrainingDetails.save(newData);
+			}
 	}
 
 	public void addUser(UserModel user) {

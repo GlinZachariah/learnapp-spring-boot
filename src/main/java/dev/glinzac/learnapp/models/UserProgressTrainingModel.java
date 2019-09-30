@@ -8,7 +8,7 @@ public class UserProgressTrainingModel {
 	private String trainerName;
 	private String technology;
 	private String userName;
-	private Double progress;
+	private int progress;
 	private int rating;
 	private String paymentStatus;
 	private String courseStatus;
@@ -21,7 +21,7 @@ public class UserProgressTrainingModel {
 	
 
 	public UserProgressTrainingModel(String courseId, String courseName, String trainerName, String technology,
-			String userName, Double progress, int rating, String paymentStatus, String courseStatus, int timeSlot,
+			String userName, int progress, int rating, String paymentStatus, String courseStatus, int timeSlot,
 			Date startDate) {
 		super();
 		this.courseId = courseId;
@@ -72,10 +72,10 @@ public class UserProgressTrainingModel {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Double getProgress() {
+	public int getProgress() {
 		return progress;
 	}
-	public void setProgress(Double progress) {
+	public void setProgress(int progress) {
 		this.progress = progress;
 	}
 	public int getRating() {

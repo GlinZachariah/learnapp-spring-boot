@@ -320,6 +320,22 @@ public class MentorService {
 		}
 	}
 
+	public MentorProgressModel withdrawProgressAmount(MentorProgressModel mentorCourse) {
+		UserProgress user = progressRepo.findCourse(mentorCourse.getUsername(), mentorCourse.getCourseId()).get();
+		if(user.getTotalCount() >0) {
+			CourseDetails course  = courseRepo.findById(mentorCourse.getCourseId()).get();
+			course.setMentorEarned(course.getMentorEarned()+ (course.getCharges()/4));
+			courseRepo.save(course);
+			
+			user.setWithdrawCount(user.getWithdrawCount()+1);
+			user.setTotalCount(user.getTotalCount()-1);
+		}
+		mentorCourse.setTotalCount(user.getTotalCount());
+		mentorCourse.setWithdrawCount(user.getWithdrawCount());
+		progressRepo.save(user);
+		return mentorCourse;
+	}
+
 	
 	
 	

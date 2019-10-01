@@ -146,5 +146,11 @@ public class MentorController {
 		 mentorService.updateProgress(mentorCourse);
 	}
 	
+//	withdrawAmount
+	@RequestMapping(value = "/withdrawAmount",method = RequestMethod.PUT)
+	public MentorProgressModel withdrawMentorProgress(@RequestBody MentorProgressModel mentorCourse){
+		 return mentorService.withdrawProgressAmount(mentorCourse);
+	}
+	
 	
 }

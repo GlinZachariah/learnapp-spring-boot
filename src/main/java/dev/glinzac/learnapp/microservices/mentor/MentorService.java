@@ -285,6 +285,7 @@ public class MentorService {
 			item.setTimeSlot(course.getTimeslot());
 			item.setUsername(course.getUserDetails().getUserName());
 			item.setWithdrawCount(course.getWithdrawCount());
+			item.setTotalCount(course.getTotalCount());
 			item.setPaymentStatus(course.getPaymentStatus());
 			if(item.getCourseStatus().equals("Rejected")) {
 				System.out.println("Rejected Item");

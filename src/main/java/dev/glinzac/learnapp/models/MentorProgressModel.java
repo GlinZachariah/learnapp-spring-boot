@@ -11,14 +11,14 @@ public class MentorProgressModel {
 	private int timeSlot;
 	private int progress;
 	private int withdrawCount;
+	private int totalCount;
 	
 	public MentorProgressModel() {
 		
 	}
-
 	
 	public MentorProgressModel(Date timestamp, String username, String courseId, String courseStatus,
-			String paymentStatus, int timeSlot, int progress, int withdrawCount) {
+			String paymentStatus, int timeSlot, int progress, int withdrawCount, int totalCount) {
 		super();
 		this.timestamp = timestamp;
 		this.username = username;
@@ -28,8 +28,26 @@ public class MentorProgressModel {
 		this.timeSlot = timeSlot;
 		this.progress = progress;
 		this.withdrawCount = withdrawCount;
+		this.totalCount = totalCount;
 	}
 	
+
+
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+
+
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+
+
+
 	public String getPaymentStatus() {
 		return paymentStatus;
 	}

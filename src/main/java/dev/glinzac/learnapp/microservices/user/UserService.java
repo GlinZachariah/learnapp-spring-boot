@@ -129,6 +129,11 @@ public class UserService {
 	}
 
 	public void addToCompleted(UserCompletedTrainingModel userData) {
+		CourseDetails courseData =courseDetails.findById(userData.getCourseId()).get();
+		courseData.setTraineeInProgress(courseData.getTraineeInProgress()-1);
+		courseData.setTraineeCompleted(courseData.getTraineeCompleted()+1);
+		courseDetails.save(courseData);
+		
 		UserCompleted user = new UserCompleted();
 		user.setUserDetails(userDetails.findById(userData.getUserName()).get());
 		user.setCourseDetails(courseDetails.findById(userData.getCourseId()).get());
@@ -167,12 +172,39 @@ public class UserService {
 			newData = userTrainingDetails.findCourse(data.getUserName(), data.getCourseId()).get();
 		}else {
 			newData = new UserProgress(); 
+			newData.setTotalCount(0);
+			
+			CourseDetails course =courseDetails.findById(data.getCourseId()).get();
+			course.setTotalTraineeCount(course.getTotalTraineeCount()+1);
+			courseDetails.save(course);
 		}
 			newData.setCourseDetails(courseDetails.findById(data.getCourseId()).get());
 			newData.setCourseStatus(data.getCourseStatus());
 			newData.setPaymentStatus(data.getPaymentStatus());
+//			if(data.getCourseStatus().equals("On Going")) {
+//				int progress = data.getProgress();
+//				int initCount=0;
+//				if(progress <= 25) {
+//					initCount+=1;
+//				}else if(progress > 25 && progress <= 50) {
+//					initCount+=2;
+//				}else if(progress > 50 && progress < 75) {
+//					initCount+=3;
+//				}else {
+//					initCount+=4;
+//				}
+//				if(newData.getTotalCount()+newData.getWithdrawCount()==4) {
+//					
+//				}
+//			}
 			if(data.getPaymentStatus().equals("Paid") && data.getCourseStatus().equals("Approved")) {
 				newData.setCourseStatus("On Going");
+				
+				
+				CourseDetails courseData =courseDetails.findById(data.getCourseId()).get();
+				courseData.setTraineeInProgress(courseData.getTraineeInProgress()+1);
+				courseDetails.save(courseData);
+				
 				PaymentLog payment = new PaymentLog();
 				
 				CourseDetails course = courseDetails.findById(data.getCourseId()).get();
@@ -194,6 +226,8 @@ public class UserService {
 				
 				courseDetails.save(course);
 			}
+			
+			
 			newData.setProgress(data.getProgress());
 			newData.setRating(data.getRating());
 			newData.setStartDate(data.getStartDate());

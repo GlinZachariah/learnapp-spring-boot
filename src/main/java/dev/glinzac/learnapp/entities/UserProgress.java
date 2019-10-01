@@ -32,12 +32,33 @@ public class UserProgress {
 	private String paymentStatus;
 	private int progress;
 	private int withdrawCount;
+	private int totalCount;
 	public UserProgress() {
 		
 	}
-	public UserProgress(int progressId, CourseDetails courseDetails, UserDetails userDetails, int rating,
+	public UserProgress(CourseDetails courseDetails, UserDetails userDetails, int rating,
 			int timeslot, Date startDate, String courseStatus, String paymentStatus, int progress,
 			int withdrawCount) {
+		super();
+		this.courseDetails = courseDetails;
+		this.userDetails = userDetails;
+		this.rating = rating;
+		this.timeslot = timeslot;
+		this.startDate = startDate;
+		this.courseStatus = courseStatus;
+		this.paymentStatus = paymentStatus;
+		this.progress = progress;
+		this.withdrawCount = withdrawCount;
+	}
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public UserProgress(int progressId, CourseDetails courseDetails, UserDetails userDetails, int rating, int timeslot,
+			Date startDate, String courseStatus, String paymentStatus, int progress, int withdrawCount,
+			int totalCount) {
 		super();
 		this.progressId = progressId;
 		this.courseDetails = courseDetails;
@@ -49,6 +70,7 @@ public class UserProgress {
 		this.paymentStatus = paymentStatus;
 		this.progress = progress;
 		this.withdrawCount = withdrawCount;
+		this.totalCount = totalCount;
 	}
 	public int getProgressId() {
 		return progressId;

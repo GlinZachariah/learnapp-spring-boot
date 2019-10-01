@@ -11,6 +11,7 @@ import dev.glinzac.learnapp.entities.CourseDetails;
 import dev.glinzac.learnapp.entities.PaymentLog;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.microservices.mentor.CourseDetailsRepository;
+import dev.glinzac.learnapp.microservices.mentor.MentorDetailsRepository;
 import dev.glinzac.learnapp.microservices.user.UserDetailsRepository;
 import dev.glinzac.learnapp.models.CommissionModel;
 import dev.glinzac.learnapp.models.PaymentModel;
@@ -29,6 +30,9 @@ public class AdminService {
 	
 	@Autowired
 	UserDetailsRepository userdata;
+	
+	@Autowired
+	MentorDetailsRepository mentordata;
 
 	public boolean authenticate(String username, String password) {
 		AdminEntity data = admindata.findById(username).orElse(null);
@@ -69,6 +73,7 @@ public class AdminService {
 			item.setPaymentAmount(payment.getPaymentAmount());
 			item.setTrainerName(payment.getMentorDetails().getUserDetails().getFullName());
 			item.setUserName(payment.getUserDetails().getUserName());
+			item.setPaymentDate(payment.getDate());
 			result.add(item);
 		});
 		return result;
@@ -99,9 +104,14 @@ public class AdminService {
 			resultItem.setPaymentAmount(item.getPaymentAmount());
 			resultItem.setTrainerName(item.getMentorDetails().getUserDetails().getFullName());
 			resultItem.setUserName(item.getUserDetails().getUserName());
+			resultItem.setPaymentDate(item.getDate());
 			result.add(resultItem);
 		});
 		return result;
+	}
+	
+	public int findMentorId(String username) {
+		return mentordata.findMentorId(username).get();
 	}
 	
 }

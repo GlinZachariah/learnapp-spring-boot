@@ -84,9 +84,10 @@ public class AdminController {
 		adminService.updateUser(username);
 	}
 //	generateReport
-	@RequestMapping(value = "/getReport/{mentorId}",method = RequestMethod.GET)
-	public List<PaymentModel> getMentorCourses(@PathVariable(name = "mentorId") String mentorId){
-		return adminService.getMentorCourse(Integer.parseInt(mentorId));
+	@RequestMapping(value = "/getReport/{mentorUsername}",method = RequestMethod.GET)
+	public List<PaymentModel> getMentorCourses(@PathVariable(name = "mentorUsername") String mentorUsername){
+		int mentorId = adminService.findMentorId(mentorUsername);
+		return adminService.getMentorCourse(mentorId);
 	}
 	
 }

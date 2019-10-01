@@ -1,15 +1,22 @@
 package dev.glinzac.learnapp.microservices.user;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.glinzac.learnapp.entities.CardDetails;
+import dev.glinzac.learnapp.entities.CourseDetails;
+import dev.glinzac.learnapp.entities.PaymentLog;
 import dev.glinzac.learnapp.entities.UserCompleted;
 import dev.glinzac.learnapp.entities.UserDetails;
 import dev.glinzac.learnapp.entities.UserProgress;
+import dev.glinzac.learnapp.microservices.admin.PaymentLogRepository;
 import dev.glinzac.learnapp.microservices.mentor.CourseDetailsRepository;
 import dev.glinzac.learnapp.models.CardDetailsModel;
 import dev.glinzac.learnapp.models.CredentialsModel;
@@ -30,11 +37,13 @@ public class UserService {
 	UserCompletedRepository userCompletedDetails;
 	@Autowired
 	UserTrainingRepository userTrainingDetails;
+	@Autowired
+	PaymentLogRepository paymentDetails;
 	
 	public UserDetailsModel authenticate(CredentialsModel loginData){
 		UserDetailsModel userDetailsModel = new UserDetailsModel();
 		UserDetails user = userDetails.findById(loginData.getUsername()).orElse(null);
-		if(user !=null) {
+		if(user !=null && user.getUserPassword().equals(loginData.getPassword()) && user.getAccountStatus().equals("unlocked")) {
 			userDetailsModel.setAuth(true);
 			userDetailsModel.setRole(user.getUserRole());
 			userDetailsModel.setFullname(user.getFullName());
@@ -162,6 +171,29 @@ public class UserService {
 			newData.setCourseDetails(courseDetails.findById(data.getCourseId()).get());
 			newData.setCourseStatus(data.getCourseStatus());
 			newData.setPaymentStatus(data.getPaymentStatus());
+			if(data.getPaymentStatus().equals("Paid") && data.getCourseStatus().equals("Approved")) {
+				newData.setCourseStatus("On Going");
+				PaymentLog payment = new PaymentLog();
+				
+				CourseDetails course = courseDetails.findById(data.getCourseId()).get();
+				Double oldRevenue = course.getTotalRevenue();
+				Double coursePayment = (course.getCharges()*course.getCommission())+course.getCharges();
+				Double newRevenue = oldRevenue + coursePayment;
+				course.setTotalRevenue(newRevenue);
+				
+				payment.setCommission(course.getCommission());
+				payment.setCourseDetails(course);
+				Calendar caldr = Calendar.getInstance();
+				SimpleDateFormat smf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = Date.valueOf(smf.format(caldr.getTime()));
+				payment.setDate(date);
+				payment.setMentorDetails(course.getMentorDetails());
+				payment.setPaymentAmount(coursePayment);
+				payment.setUserDetails(userDetails.findById(data.getUserName()).get());
+				paymentDetails.save(payment);
+				
+				courseDetails.save(course);
+			}
 			newData.setProgress(data.getProgress());
 			newData.setRating(data.getRating());
 			newData.setStartDate(data.getStartDate());

@@ -43,10 +43,10 @@ public class UserController {
 	}
 
 //* perform authentication
-	@RequestMapping(value="/performAuth",method = RequestMethod.POST)
-	public UserDetailsModel performAuth(@RequestBody CredentialsModel loginData) {
-		return userService.authenticate(loginData);
-	}
+//	@RequestMapping(value="/performAuth",method = RequestMethod.POST)
+//	public UserDetailsModel performAuth(@RequestBody CredentialsModel loginData) {
+//		return userService.authenticate(loginData);
+//	}
 	
 //*	saveCardDetails | UpdateCardDetails
 	@RequestMapping(value="/updateCardDetails",method= RequestMethod.PUT)

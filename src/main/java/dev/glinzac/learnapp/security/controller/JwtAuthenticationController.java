@@ -30,8 +30,13 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
+	
+//	@RequestMapping(value="/performAuth",method = RequestMethod.POST)
+//	public UserDetailsModel performAuth(@RequestBody CredentialsModel loginData) {
+//		return userService.authenticate(loginData);
+//	}
 
-	@RequestMapping(value = "/users/signin", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/performAuth", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());

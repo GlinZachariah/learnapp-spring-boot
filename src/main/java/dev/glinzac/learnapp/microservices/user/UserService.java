@@ -40,21 +40,21 @@ public class UserService {
 	@Autowired
 	PaymentLogRepository paymentDetails;
 	
-	public UserDetailsModel authenticate(CredentialsModel loginData){
-		UserDetailsModel userDetailsModel = new UserDetailsModel();
-		UserDetails user = userDetails.findById(loginData.getUsername()).orElse(null);
-		if(user !=null && user.getUserPassword().equals(loginData.getPassword()) && user.getAccountStatus().equals("unlocked")) {
-			userDetailsModel.setAuth(true);
-			userDetailsModel.setRole(user.getUserRole());
-			userDetailsModel.setFullname(user.getFullName());
-			return userDetailsModel;
-		}else {
-			userDetailsModel.setAuth(false);
-			userDetailsModel.setRole("");
-			userDetailsModel.setFullname("");
-			return userDetailsModel;
-		}
-	}
+//	public UserDetailsModel authenticate(CredentialsModel loginData){
+//		UserDetailsModel userDetailsModel = new UserDetailsModel();
+//		UserDetails user = userDetails.findById(loginData.getUsername()).orElse(null);
+//		if(user !=null && user.getUserPassword().equals(loginData.getPassword()) && user.getAccountStatus().equals("unlocked")) {
+//			userDetailsModel.setAuth(true);
+//			userDetailsModel.setRole(user.getUserRole());
+//			userDetailsModel.setFullname(user.getFullName());
+//			return userDetailsModel;
+//		}else {
+//			userDetailsModel.setAuth(false);
+//			userDetailsModel.setRole("");
+//			userDetailsModel.setFullname("");
+//			return userDetailsModel;
+//		}
+//	}
 
 	public int getUserCount() {
 		return (int) userDetails.count();

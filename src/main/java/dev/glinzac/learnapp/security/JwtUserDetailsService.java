@@ -21,11 +21,15 @@ public class JwtUserDetailsService implements UserDetailsService {
 	UserDetailsRepository userRepo; 
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public CustomCredentials loadUserByUsername(String username) throws UsernameNotFoundException {
 		dev.glinzac.learnapp.entities.UserDetails user = userRepo.findById(username).orElse(null);
 
 		List<GrantedAuthority> allowedUsers= new ArrayList<>();
 		allowedUsers.add(new SimpleGrantedAuthority("ROLE_"+user.getUserRole().toUpperCase()));
-		return new User(user.getUserName(),user.getUserPassword(),allowedUsers);
+//		return new User(user.getUserName(),user.getUserPassword(),allowedUsers);
+		CustomCredentials customDetails = new CustomCredentials();
+		customDetails.setUsername(customDetails.getUsername());
+		customDetails.setRole(customDetails.getRole());
+		return customDetails;
 	}
 }

@@ -23,6 +23,7 @@ import dev.glinzac.learnapp.models.UserModel;
 import dev.glinzac.learnapp.models.UserProgressTrainingModel;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users/")
 public class UserController {
 	

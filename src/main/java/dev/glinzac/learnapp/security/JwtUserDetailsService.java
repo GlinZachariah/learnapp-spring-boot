@@ -28,8 +28,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		allowedUsers.add(new SimpleGrantedAuthority("ROLE_"+user.getUserRole().toUpperCase()));
 //		return new User(user.getUserName(),user.getUserPassword(),allowedUsers);
 		CustomCredentials customDetails = new CustomCredentials();
-		customDetails.setUsername(customDetails.getUsername());
-		customDetails.setRole(customDetails.getRole());
+		customDetails.setUsername(user.getUserName());
+		customDetails.setRole(user.getUserRole());
 		return customDetails;
 	}
 }

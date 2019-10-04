@@ -49,6 +49,13 @@ public class UserController {
 //		return userService.authenticate(loginData);
 //	}
 	
+//	getUserRole
+	@RequestMapping(value="/getRole/{username}",method= RequestMethod.GET)
+	public String getRole(@PathVariable String username) {
+		return userService.getRole(username);
+	}
+	
+	
 //*	saveCardDetails | UpdateCardDetails
 	@RequestMapping(value="/updateCardDetails",method= RequestMethod.PUT)
 	public void updateCardDetails(@RequestBody CardDetailsModel cardDetails) {

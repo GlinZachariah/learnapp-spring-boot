@@ -253,6 +253,11 @@ public class UserService {
 		userDetails.save(newUser);
 	}
 
+	public String getRole(String username) {
+		UserDetails user=  userDetails.getUserRole(username).get();
+		return user.getUserRole();
+	}
+
 	
 	
 }
